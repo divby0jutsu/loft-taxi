@@ -3,7 +3,6 @@ import Register from "./Register";
 import Login from "./Login";
 import { Map } from "./Map";
 import { Account } from "./Account";
-import { LogOut } from "./LogOut";
 import "./App.css";
 
 class App extends React.Component {
@@ -20,7 +19,6 @@ class App extends React.Component {
     switch (type) {
       case "map": return <Map/>;
       case "account": return <Account/>;
-      case "logout": return <LogOut/>;
       case "register":
         return <Register navigateTo={this.navigateTo.bind(this)}/>;
       case "login":
@@ -61,7 +59,7 @@ class App extends React.Component {
               <li>
                 <button
                   onClick={() => {
-                    this.navigateTo("logout");
+                    this.navigateTo("login");
                   }}
                 >
                   Выйти

@@ -2,12 +2,12 @@ import React from "react";
 
 class Register extends React.Component {
   render() {
-  const onSubmit = (e) => {
-    e.preventDefault();
-    this.props.navigateTo('map');
-  }
+    const switchPage = (e, type) => {
+      e.preventDefault();
+      this.props.navigateTo(type);
+    }
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={(e) => switchPage(e, 'map')}>
       <h1>Регистрация</h1>
       <label htmlFor="email">Email*</label>
       <input type="email" name="email" id="email" size="28" placeholder="mail@mail.ru"/>
@@ -16,6 +16,7 @@ class Register extends React.Component {
       <label htmlFor="password">Придумайте пароль*</label>
       <input type="password" name="password" id="password" size="28"/>
       <button type="submit">Зарегистрироваться</button>
+      <p>Уже зарегистрированы? <button onClick={(e) => switchPage(e, 'login')}>Войти</button></p>
     </form>
   );
   }
