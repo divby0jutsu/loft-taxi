@@ -2,9 +2,9 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import App from "./App";
 
-jest.mock("./Login", () => ({ Login: () => <div>Login form</div> }));
+jest.mock("./Login", () => () => <div>Login form</div> );
 jest.mock("./Account", () => ({ Account: () => <div>Account content</div> }));
-jest.mock("./LogOut", () => ({ LogOut: () => <div>LogOut content</div> }));
+jest.mock("./Map", () => ({ Map: () => <div>Map content</div> }));
 
 describe("App", () => {
   it("renders correctly", () => {
@@ -17,8 +17,8 @@ describe("App", () => {
       const { getByText, container } = render(<App />);
       fireEvent.click(getByText('Профиль'))
       expect(container.innerHTML).toMatch("Account content");
-      fireEvent.click(getByText('Выйти'));
-      expect(container.innerHTML).toMatch("LogOut content");
+      fireEvent.click(getByText('Карта'));
+      expect(container.innerHTML).toMatch("Map content");
     });
   });
 });
