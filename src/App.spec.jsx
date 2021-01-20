@@ -2,7 +2,7 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import App from "./App";
 
-jest.mock("./Login", () => () => <div>Login form</div> );
+jest.mock("./Login", () => ({ Login: () => <div>Login content</div> }));
 jest.mock("./Account", () => ({ Account: () => <div>Account content</div> }));
 jest.mock("./Map", () => ({ Map: () => <div>Map content</div> }));
 

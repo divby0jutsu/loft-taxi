@@ -1,11 +1,15 @@
 import React from 'react';
-import Register from "./Register";
-import Login from "./Login";
+import { Register } from "./Register";
+import { Login } from "./Login";
 import { Map } from "./Map";
 import { Account } from "./Account";
 import "./App.css";
 
+
+
 class App extends React.Component {
+
+  
 
   state = {
     currentPage: "login",
@@ -15,17 +19,11 @@ class App extends React.Component {
     this.setState({ currentPage: page });
   };
 
-  redirect (type) {
-    switch (type) {
-      case "map": return <Map/>;
-      case "account": return <Account/>;
-      case "register":
-        return <Register navigateTo={this.navigateTo.bind(this)}/>;
-      case "login":
-        return <Login navigateTo={this.navigateTo.bind(this)}/>;
-      default:
-        return <Login navigateTo={this.navigateTo.bind(this)}/>;
-    }
+  PAGES = {
+    'login': <Login onLogin={()=>this.navigateTo('map')} onRegister={()=>this.navigateTo('register')}/>,
+    'register': <Register onLogin={()=>this.navigateTo('login')} onRegister={()=>this.navigateTo('map')}/>,
+    'map': <Map/>,
+    'account': <Account/>
   }
 
   render() {
@@ -65,7 +63,7 @@ class App extends React.Component {
           </nav>
         </header>
         <main data-testid="container">
-          <section>{this.redirect(this.state.currentPage)}</section>
+          <section>{this.PAGES[this.state.currentPage]}</section>
         </main>
       </>
     );
