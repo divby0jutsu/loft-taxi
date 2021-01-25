@@ -1,22 +1,27 @@
 import React from "react";
-import styles from './Register.module.css';
+import { Button, Typography, FormLabel, TextField} from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { AuthContext } from "./Authentication";
 
-export const Register = ({ onLogin, onRegister }) => {
+export const Register = ({ }) => {
+  const { login } = React.useContext(AuthContext);
+
   const handleSubmit = (e) => {
-    e.preventDefault();
-    onRegister();
+    const {email, password} = e.target;
+    login(email, password);
   }
+
   return (
-    <form className={styles.Register} onSubmit={handleSubmit}>
-      <h1>Регистрация</h1>
-      <label htmlFor="email">Email*</label>
-      <input type="email" name="email" id="email" size="28" placeholder="mail@mail.ru"/>
-      <label htmlFor="name">Как вас зовут?*</label>
-      <input type="text" name="name" id="name" size="38" placeholder="Петр Александрович"/>
-      <label htmlFor="password">Придумайте пароль*</label>
-      <input type="password" name="password" id="password" size="28" placeholder="*************"/>
-      <button  className={styles.Submitbutton} type="submit">Зарегистрироваться</button>
-      <p>Уже зарегистрированы? <button className={styles.Loginbutton} onClick={onLogin}>Войти</button></p>
+    <form style={{ display: "flex", flexDirection: "column"}} onSubmit={handleSubmit}>
+      <Typography variant="h4" component="h1" style={{textAlign: "center"}}>Регистрация</Typography>
+      <FormLabel htmlFor="email">Email*</FormLabel>
+      <TextField type="email" name="email" id="email" placeholder="mail@mail.ru"/>
+      <FormLabel htmlFor="name">Как вас зовут?*</FormLabel>
+      <TextField type="text" name="name" id="name" placeholder="Петр Александрович"/>
+      <FormLabel htmlFor="password">Придумайте пароль*</FormLabel>
+      <TextField type="password" name="password" id="password" placeholder="*************"/>
+      <Button variant="contained" color="primary" type="submit" component={ Link } to="/map" onClick={handleSubmit}>Зарегистрироваться</Button>
+      <p style={{textAlign: "center"}}>Уже зарегистрированы? <Button variant="text" color="primary" component={ Link } to="/signin">Войти</Button></p>
     </form>
   );
   }

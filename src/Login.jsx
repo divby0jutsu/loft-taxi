@@ -1,24 +1,49 @@
 import React from "react";
-import styles from'./Login.module.css';
+import { Button, Typography, FormLabel, TextField } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { AuthContext } from "./Authentication";
 
+export const Login = () => {
+  const { login } = React.useContext(AuthContext);
+  const [email, setEmail] = React.useState();
+  const [password, setPassword] = React.useState();
 
-export const Login = ({onLogin, onRegister}) => {
   const handleSubmit = (e) => {
-    e.preventDefault();
-    onLogin();
+    login(email, password);
   }
 
   return (
-    <form className={styles.Login} onSubmit={handleSubmit}>
-      <h1>Войти</h1>
-      <label htmlFor="email">Email</label>
-      <input type="email" name="email" id="email" size="28" placeholder="mail@mail.ru"/>
-      <label htmlFor="password">Пароль</label>
-      <input type="password" name="password" id="password" size="28" placeholder="*************"/>
-      <a>Забыли пароль?</a>
-      <button className={styles.Submitbutton} type="submit">Войти</button>
-      <p>Новый пользователь? <button className={styles.Registerbutton} onClick={onRegister}>Регистрация</button></p>
-    </form>
+          <form
+            onSubmit = {handleSubmit}
+            style={{ display: "flex", flexDirection: "column"}}
+          >
+            <Typography variant="h4" component="h1" style={{textAlign: "center"}}>
+              Войти
+            </Typography>
+            <FormLabel htmlFor="email">Email</FormLabel>
+            <TextField
+              type="email"
+              name="email"
+              id="email"
+              placeholder="mail@mail.ru" onChange={(e) => setEmail(e.target.value)}
+            />
+            <FormLabel htmlFor="password">Пароль</FormLabel>
+            <TextField
+              type="password"
+              name="password"
+              id="password"
+              placeholder="*************" onChange={(e) => setPassword(e.target.value)}
+            />
+            <p style={{textAlign: "right"}}>Забыли пароль?</p>
+            <Button variant="contained" color="primary" type="submit" onClick={handleSubmit}  component={ Link } to="/map">
+              Войти
+            </Button>
+            <p style={{textAlign: "center"}}>
+              Новый пользователь?{" "}
+              <Button variant="text" color="primary" component={ Link } to="/signup">
+                Регистрация
+              </Button>
+            </p>
+          </form>
   );
-}
-
+};
