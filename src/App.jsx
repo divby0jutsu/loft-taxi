@@ -11,7 +11,7 @@ import { theme } from "./theme";
 import Welcome from "./Welcome";
 import { Header } from "./Header";
 import Map from "./Map";
-import Account from "./Account";
+import { Account } from "./Account";
 import "./App.css";
 import { AuthContext } from "./Authentication";
 import PrivateRoute from "./PrivateRoute"
@@ -31,11 +31,11 @@ const App = () => {
             </Route>              
             <PrivateRoute path="/map">
               <Header />
-              <Map/>
+              <Map />
             </PrivateRoute>
             <PrivateRoute path="/account">
               <Header />
-              <Account/>
+              <Account />
             </PrivateRoute>
           </Switch>
         </Router>

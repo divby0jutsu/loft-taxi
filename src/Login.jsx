@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Typography, FormLabel, TextField } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import { AuthContext } from "./Authentication";
 
 export const Login = () => {

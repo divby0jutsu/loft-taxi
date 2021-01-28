@@ -1,7 +1,5 @@
 import React from "react";
 
-const Account = () => {
-  return <>Профиль</>
+export const Account = () => {
+  return (<React.Fragment><h1>Профиль</h1></React.Fragment>);
 }
-
-export default Account;
