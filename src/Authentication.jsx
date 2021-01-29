@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 export const AuthContext = React.createContext({});
+export const useAuthContext = () => React.useContext(AuthContext);
 
 const Authentication = ({children}) => {
 

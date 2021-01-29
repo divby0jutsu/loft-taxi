@@ -13,8 +13,9 @@ import { Header } from "./Header";
 import Map from "./Map";
 import { Account } from "./Account";
 import "./App.css";
-import { AuthContext } from "./Authentication";
-import PrivateRoute from "./PrivateRoute"
+import PrivateRoute from "./PrivateRoute";
+
+
 
 const App = () => {
 
@@ -42,5 +43,6 @@ const App = () => {
       </ThemeProvider>
   );
 };
+
 
 export default App;
