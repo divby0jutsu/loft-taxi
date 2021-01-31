@@ -1,17 +1,22 @@
 import React from "react";
 import { Login } from "./Login";
 import { Register } from "./Register";
-import { ReactComponent as Logo } from './logo.svg'
+import { ReactComponent as Logo } from "./logo.svg";
 import { Grid } from "@material-ui/core";
-import { PropTypes } from 'prop-types';
+import { PropTypes } from "prop-types";
+import { AuthContext } from "./Authentication";
+import { Redirect } from "react-router-dom";
 
-const Welcome = ({ renderPage}) => {
+const Welcome = ({ renderPage }) => {
+  const { isLoggedIn } = React.useContext(AuthContext);
 
-  function switchForm (page) {
-    return page === 'register'? <Register /> : <Login />
+  function switchForm(page) {
+    return page === "register" ? <Register /> : <Login />;
   }
-  
-  return (
+
+  return isLoggedIn ? (
+    <Redirect to="/" />
+  ) : (
     <Grid container style={{ minHeight: "100vh" }}>
       <Grid
         container
@@ -32,7 +37,7 @@ const Welcome = ({ renderPage}) => {
           justify="center"
           alignItems="center"
         >
-         {switchForm(renderPage)} 
+          {switchForm(renderPage)}
         </Grid>
       </Grid>
     </Grid>
@@ -40,7 +45,7 @@ const Welcome = ({ renderPage}) => {
 };
 
 Welcome.propTypes = {
-  renderPage: PropTypes.string
+  renderPage: PropTypes.string,
 };
 
 export default Welcome;
