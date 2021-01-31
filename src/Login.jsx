@@ -14,6 +14,7 @@ export const Login = () => {
 
   return (
     <form
+      data-testid="loginForm"
       onSubmit={handleSubmit}
       style={{ display: "flex", flexDirection: "column" }}
     >
@@ -26,7 +27,6 @@ export const Login = () => {
         name="email"
         id="email"
         placeholder="mail@mail.ru"
-        data-testid="emailInput"
         onChange={(e) => setEmail(e.target.value)}
       />
       <FormLabel htmlFor="password">Пароль</FormLabel>
@@ -35,7 +35,6 @@ export const Login = () => {
         name="password"
         id="password"
         placeholder="*************"
-        data-testid="passwordInput"
         onChange={(e) => setPassword(e.target.value)}
       />
       <p style={{ textAlign: "right" }}>Забыли пароль?</p>
@@ -43,7 +42,6 @@ export const Login = () => {
         variant="contained"
         color="primary"
         type="submit"
-        data-testid="loginSubmitBtn"
         onClick={handleSubmit}
       >
         Войти

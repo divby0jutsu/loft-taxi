@@ -12,7 +12,7 @@ export const Register = ({ }) => {
   }
 
   return (
-    <form style={{ display: "flex", flexDirection: "column"}} onSubmit={handleSubmit}>
+    <form data-testid="registerForm" style={{ display: "flex", flexDirection: "column"}} onSubmit={handleSubmit}>
       <Typography variant="h4" component="h1" style={{textAlign: "center"}}>Регистрация</Typography>
       <FormLabel htmlFor="email">Email*</FormLabel>
       <TextField type="email" name="email" id="email" placeholder="mail@mail.ru"/>
