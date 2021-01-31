@@ -5,6 +5,8 @@ import "./App.css";
 import { Routes } from "./Routes";
 
 const App = () => {
+  const [token, setToken] = React.useState();
+ 
   return (
     <ThemeProvider theme={theme}>
       <Routes />

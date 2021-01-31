@@ -1,17 +1,21 @@
 import React from "react";
-import { Login } from "./Login";
-import { Register } from "./Register";
-import { ReactComponent as Logo } from './logo.svg'
+import Login from "./Login";
+import Register from "./Register";
+import { ReactComponent as Logo } from "./logo.svg";
 import { Grid } from "@material-ui/core";
-import { PropTypes } from 'prop-types';
+import { PropTypes } from "prop-types";
+import { loginStateSelector } from "./reducers/rootReducer";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
-const Welcome = ({ renderPage}) => {
-
-  function switchForm (page) {
-    return page === 'register'? <Register /> : <Login />
+const Welcome = ({ renderPage, ...props }) => {
+  function switchForm(page) {
+    return page === "register" ? <Register /> : <Login />;
   }
-  
-  return (
+
+  return props.isLoggedIn ? (
+    <Redirect to="/" />
+  ) : (
     <Grid container style={{ minHeight: "100vh" }}>
       <Grid
         container
@@ -32,7 +36,7 @@ const Welcome = ({ renderPage}) => {
           justify="center"
           alignItems="center"
         >
-         {switchForm(renderPage)} 
+          {switchForm(renderPage)}
         </Grid>
       </Grid>
     </Grid>
@@ -40,7 +44,7 @@ const Welcome = ({ renderPage}) => {
 };
 
 Welcome.propTypes = {
-  renderPage: PropTypes.string
+  renderPage: PropTypes.string,
 };
 
-export default Welcome;
+export default connect(loginStateSelector)(Welcome);

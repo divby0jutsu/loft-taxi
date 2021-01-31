@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, AppBar, Toolbar } from "@material-ui/core";
 import { ReactComponent as LogoIcon } from "./logoicon.svg";
 import { ReactComponent as LogoText } from "./lofttaxi.svg";
-import { Nav } from "./Nav";
+import Nav from "./Nav";
 
 export const Header = () => {
   return (
