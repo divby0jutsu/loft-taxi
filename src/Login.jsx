@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Typography, FormLabel, TextField } from "@material-ui/core";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "./Authentication";
 
 export const Login = () => {
@@ -26,6 +26,7 @@ export const Login = () => {
         name="email"
         id="email"
         placeholder="mail@mail.ru"
+        data-testid="emailInput"
         onChange={(e) => setEmail(e.target.value)}
       />
       <FormLabel htmlFor="password">Пароль</FormLabel>
@@ -34,6 +35,7 @@ export const Login = () => {
         name="password"
         id="password"
         placeholder="*************"
+        data-testid="passwordInput"
         onChange={(e) => setPassword(e.target.value)}
       />
       <p style={{ textAlign: "right" }}>Забыли пароль?</p>
@@ -41,6 +43,7 @@ export const Login = () => {
         variant="contained"
         color="primary"
         type="submit"
+        data-testid="loginSubmitBtn"
         onClick={handleSubmit}
       >
         Войти

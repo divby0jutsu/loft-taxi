@@ -7,6 +7,7 @@ const Authentication = ({ children }) => {
 
   const login = (email, password) => {
     if (email !== "mail@mail.com" || password !== "psw") {
+      console.log(email, password);
       return;
     }
     setLogin(true);
