@@ -1,13 +1,12 @@
-import { login } from "./actions";
-import { store } from "./store";
+import { AUTHENTICATE, login } from "./actions";
 import { serverLogin } from "./api";
-import { AUTHENTICATE } from "./actions";
 
-export const authMiddleware = (state) => (next) => async (action) => {
+export const authMiddleware = (store) => (next) => async (action) => {
   if (action.type === AUTHENTICATE) {
     const credentials = action.payload;
-    const { success, token } = await serverLogin(credentials);
-    if (success) {
+    const message = await serverLogin(credentials);
+    console.log(message.success);
+    if (message.success) {
       store.dispatch(login());
     }
   } else {

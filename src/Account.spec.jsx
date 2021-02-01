@@ -1,9 +1,14 @@
-import  { Account } from "./Account";
+import { Account } from "./Account";
 import { render } from "@testing-library/react";
+import { TestWrapper } from "./testWrapper";
 
 describe("Account", () => {
   it("renders correctly", () => {
-    const {container} = render(<Account/>);
+    const { container } = render(
+      <TestWrapper loginState={true}>
+        <Account />
+      </TestWrapper>
+    );
     expect(container.innerHTML).toMatch("Профиль");
-  })
-})
+  });
+});

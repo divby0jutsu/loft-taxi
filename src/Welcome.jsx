@@ -8,7 +8,7 @@ import { loginStateSelector } from "./reducers/rootReducer";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-const Welcome = ({ renderPage, ...props }) => {
+const Welcome = ({ ...props }) => {
   function switchForm(page) {
     return page === "register" ? <Register /> : <Login />;
   }
@@ -36,7 +36,7 @@ const Welcome = ({ renderPage, ...props }) => {
           justify="center"
           alignItems="center"
         >
-          {switchForm(renderPage)}
+          {switchForm(props.renderPage)}
         </Grid>
       </Grid>
     </Grid>
@@ -45,6 +45,7 @@ const Welcome = ({ renderPage, ...props }) => {
 
 Welcome.propTypes = {
   renderPage: PropTypes.string,
+  isLoggedIn: PropTypes.bool,
 };
 
 export default connect(loginStateSelector)(Welcome);

@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Typography, FormLabel, TextField } from "@material-ui/core";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { authenticate } from "./actions";
 
@@ -20,6 +20,7 @@ const Login = (props) => {
 
   return (
     <form
+      data-testid="loginForm"
       onSubmit={handleSubmit}
       style={{ display: "flex", flexDirection: "column" }}
     >
@@ -43,12 +44,7 @@ const Login = (props) => {
         onChange={(e) => setPassword(e.target.value)}
       />
       <p style={{ textAlign: "right" }}>Забыли пароль?</p>
-      <Button
-        variant="contained"
-        color="primary"
-        type="submit"
-        onClick={handleSubmit}
-      >
+      <Button variant="contained" color="primary" type="submit">
         Войти
       </Button>
       <p style={{ textAlign: "center" }}>

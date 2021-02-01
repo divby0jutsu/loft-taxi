@@ -12,6 +12,7 @@ const Register = (props) => {
 
   return (
     <form
+      data-testid="registerForm"
       style={{ display: "flex", flexDirection: "column" }}
       onSubmit={handleSubmit}
     >
@@ -39,14 +40,7 @@ const Register = (props) => {
         id="password"
         placeholder="*************"
       />
-      <Button
-        variant="contained"
-        color="primary"
-        type="submit"
-        component={Link}
-        to="/map"
-        onClick={handleSubmit}
-      >
+      <Button variant="contained" color="primary" type="submit">
         Зарегистрироваться
       </Button>
       <p style={{ textAlign: "center" }}>
