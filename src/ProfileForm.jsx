@@ -21,10 +21,10 @@ export const ProfileForm = (props) => {
   const [focus, setFocus] = useState("");
 
   const cardinfo = {
-    cardNumber: "2000 0000 0000 0000",
-    expiryDate: "01/22",
-    cardName: "TEST",
-    cvc: "910",
+    cardNumber: number,
+    expiryDate: expiry,
+    cardName: name,
+    cvc: cvc,
     token: "AUTH_TOKEN",
   };
 
@@ -103,5 +103,3 @@ export const ProfileForm = (props) => {
     </Grid>
   );
 };
-
-//export default connect(null, { authenticate })(Account);
