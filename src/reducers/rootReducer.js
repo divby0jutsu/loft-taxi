@@ -13,6 +13,7 @@ export const loginStateSelector = (state) => ({
 
 export const cardInfoSelector = (state) => ({
   storedCard: state.profile,
+  token: state.auth.authToken,
 });
 
 export default rootReducer;

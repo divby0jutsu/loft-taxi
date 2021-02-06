@@ -11,6 +11,13 @@ export const TestWrapper = (props) => {
 
   const authState = {
     auth: { isLoggedIn: props.loginState },
+    profile: {
+      cardNumber: "",
+      expiryDate: "",
+      cardName: "",
+      cvc: "",
+      token: "AUTH_TOKEN",
+    },
   };
 
   const mockStore = {

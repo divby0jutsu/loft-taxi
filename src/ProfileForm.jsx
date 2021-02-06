@@ -27,12 +27,11 @@ const ProfileForm = (props) => {
     expiryDate: expiry,
     cardName: name,
     cvc: cvc,
-    token: "AUTH_TOKEN",
+    token: props.token,
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ name, number, expiry, cvc });
     props.saveCard(cardinfo);
   };
 
