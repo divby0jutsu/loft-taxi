@@ -9,6 +9,7 @@ export const serverLogin = async (credentials) => {
 };
 
 export const addBankCard = async (cardinfo) => {
+  console.log(JSON.stringify(cardinfo));
   return fetch("https://loft-taxi.glitch.me/card", {
     method: "POST",
     headers: {

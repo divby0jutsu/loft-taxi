@@ -8,12 +8,13 @@ import {
 } from "@material-ui/core";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
-import { addBankCard } from "./api";
 import InputMask from "react-input-mask";
+import { connect } from "react-redux";
+import { saveCard } from "./actions";
 
 //import Autocomplete from "@material-ui/lab/Autocomplete";
 
-export const ProfileForm = (props) => {
+const ProfileForm = (props) => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [expiry, setExpiry] = useState("");
@@ -28,11 +29,10 @@ export const ProfileForm = (props) => {
     token: "AUTH_TOKEN",
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ name, number, expiry, cvc });
-    const success = await addBankCard(cardinfo);
-    console.log(success);
+    props.saveCard(cardinfo);
   };
 
   return (
@@ -144,3 +144,5 @@ export const ProfileForm = (props) => {
     </Grid>
   );
 };
+
+export default connect(null, { saveCard })(ProfileForm);
