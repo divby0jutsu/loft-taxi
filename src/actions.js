@@ -2,8 +2,9 @@ export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const AUTHENTICATE = "AUTHENTICATE";
 
-export const login = () => ({
+export const login = (token) => ({
   type: LOGIN,
+  payload: token,
 });
 export const logout = () => ({
   type: LOGOUT,

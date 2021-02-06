@@ -7,7 +7,9 @@ export const authMiddleware = (store) => (next) => async (action) => {
     const message = await serverLogin(credentials);
     console.log(message.success);
     if (message.success) {
-      store.dispatch(login());
+      store.dispatch(login(message.token));
+    } else {
+      console.log(message.error);
     }
   } else {
     next(action);

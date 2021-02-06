@@ -15,7 +15,11 @@ export const Account = () => {
         <Grid container xs={12} sm={9} justify="center" alignItems="center">
           <Paper
             elevation={5}
-            style={{ padding: "20px 40px", borderRadius: "10px" }}
+            style={{
+              padding: "20px 40px",
+              zIndex: "1200",
+              borderRadius: "10px",
+            }}
           >
             <ProfileForm />
           </Paper>

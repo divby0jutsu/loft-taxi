@@ -36,15 +36,36 @@ export const ProfileForm = (props) => {
   };
 
   return (
-    <Grid container direction="column" alignItems="center" xs={12}>
-      <Typography variant="h4" component="h1" style={{ textAlign: "center" }}>
+    <Grid
+      container
+      direction="column"
+      alignItems="center"
+      justify="center"
+      xs={12}
+    >
+      <Typography
+        variant="h4"
+        component="h1"
+        style={{
+          marginBottom: "0.8rem",
+          fontWeight: "700",
+          textAlign: "center",
+        }}
+      >
         Профиль
       </Typography>
       <p style={{ textAlign: "center" }}>Введите платежные данные</p>
 
       <form data-testid="profileForm" onSubmit={handleSubmit}>
         <Grid container wrap="nowrap" xs={12}>
-          <Grid item container direction="column" xs={12} s={5}>
+          <Grid
+            item
+            container
+            direction="column"
+            xs={12}
+            s={5}
+            style={{ marginRight: "2rem" }}
+          >
             <FormLabel htmlFor="name">Имя владельца</FormLabel>
             <TextField
               type="text"
@@ -65,28 +86,46 @@ export const ProfileForm = (props) => {
             >
               <TextField type="tel" placeholder="**** **** **** ****" />
             </InputMask>
-            <FormLabel htmlFor="cvc">MM/YY</FormLabel>
-            <InputMask
-              mask="99/99"
-              name="number"
-              maskChar=" "
-              onChange={(e) => setExpiry(e.target.value)}
-              onFocus={(e) => setFocus(e.target.name)}
-              value={expiry}
-            >
-              <TextField type="text" name="expiry" placeholder="MM/YY" />
-            </InputMask>
-            <FormLabel htmlFor="cvc">CVC</FormLabel>
-            <TextField
-              type="tel"
-              name="cvc"
-              value={cvc}
-              placeholder="CVC"
-              onChange={(e) => setCvc(e.target.value)}
-              onFocus={(e) => setFocus(e.target.name)}
-            />
+            <Grid container item wrap="nowrap">
+              <Grid
+                container
+                item
+                direction="column"
+                style={{ marginRight: "2rem" }}
+              >
+                <FormLabel htmlFor="cvc">MM/YY</FormLabel>
+                <InputMask
+                  mask="99/99"
+                  name="number"
+                  maskChar=" "
+                  onChange={(e) => setExpiry(e.target.value)}
+                  onFocus={(e) => setFocus(e.target.name)}
+                  value={expiry}
+                >
+                  <TextField type="text" name="expiry" placeholder="MM/YY" />
+                </InputMask>
+              </Grid>
+              <Grid container item direction="column">
+                <FormLabel htmlFor="cvc">CVC</FormLabel>
+                <TextField
+                  type="tel"
+                  name="cvc"
+                  value={cvc}
+                  placeholder="CVC"
+                  onChange={(e) => setCvc(e.target.value)}
+                  onFocus={(e) => setFocus(e.target.name)}
+                />
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid container item direction="column" xs={12} s={5}>
+          <Grid
+            container
+            item
+            direction="column"
+            xs={12}
+            s={5}
+            justify="center"
+          >
             <Cards
               number={number}
               name={name}
@@ -96,9 +135,11 @@ export const ProfileForm = (props) => {
             />
           </Grid>
         </Grid>
-        <Button variant="contained" color="primary" type="submit">
-          Coxранить
-        </Button>
+        <Grid item container justify="center">
+          <Button variant="contained" color="primary" type="submit" mx="auto">
+            Coxранить
+          </Button>
+        </Grid>
       </form>
     </Grid>
   );
