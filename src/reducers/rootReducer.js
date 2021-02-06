@@ -11,4 +11,8 @@ export const loginStateSelector = (state) => ({
   isLoggedIn: state.auth.isLoggedIn,
 });
 
+export const cardInfoSelector = (state) => ({
+  storedCard: state.profile,
+});
+
 export default rootReducer;

@@ -1,14 +1,23 @@
 import { STORECARD } from "../actions";
 
 const initialState = {
-  storedCard: {},
+  cardNumber: "",
+  expiryDate: "",
+  cardName: "",
+  cvc: "",
+  token: "AUTH_TOKEN",
 };
 
 export const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case STORECARD:
-      console.log(action.payload);
-      return { storedCard: { ...action.payload } };
+      const card = action.payload;
+      return {
+        cardNumber: card.cardNumber,
+        expiryDate: card.expiryDate,
+        cardName: card.cardName,
+        cvc: card.cvc,
+      };
     default:
       return state;
   }

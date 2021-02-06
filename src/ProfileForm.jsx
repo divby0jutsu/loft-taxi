@@ -11,14 +11,15 @@ import "react-credit-cards/es/styles-compiled.css";
 import InputMask from "react-input-mask";
 import { connect } from "react-redux";
 import { saveCard } from "./actions";
+import { cardInfoSelector } from "./reducers/rootReducer";
 
 //import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const ProfileForm = (props) => {
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
-  const [expiry, setExpiry] = useState("");
-  const [cvc, setCvc] = useState("");
+  const [name, setName] = useState(props.storedCard.cardName);
+  const [number, setNumber] = useState(props.storedCard.cardNumber);
+  const [expiry, setExpiry] = useState(props.storedCard.expiryDate);
+  const [cvc, setCvc] = useState(props.storedCard.cvc);
   const [focus, setFocus] = useState("");
 
   const cardinfo = {
@@ -145,4 +146,4 @@ const ProfileForm = (props) => {
   );
 };
 
-export default connect(null, { saveCard })(ProfileForm);
+export default connect(cardInfoSelector, { saveCard })(ProfileForm);
