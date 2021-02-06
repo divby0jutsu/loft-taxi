@@ -8,11 +8,6 @@ const Login = (props) => {
   const [email, setEmail] = React.useState();
   const [password, setPassword] = React.useState();
 
-  // const credentials = {
-  //   email: "test5@test.com",
-  //   password: "000000",
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     props.authenticate({ email, password });

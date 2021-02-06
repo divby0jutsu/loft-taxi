@@ -1,7 +1,6 @@
 import { authMiddleware } from "./authMiddleware";
 import { authenticate } from "./actions";
 import { serverLogin } from "./api";
-import { AUTHENTICATE } from "../../../../Downloads/lesson-3/src/actions";
 
 jest.mock("./api", () => ({ serverLogin: jest.fn(() => true) }));
 
