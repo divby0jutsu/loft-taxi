@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Typography, FormLabel, TextField } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { authenticate } from "./actions";
+import { authenticate } from "../../actions";
 
 const Login = (props) => {
   const [email, setEmail] = React.useState();

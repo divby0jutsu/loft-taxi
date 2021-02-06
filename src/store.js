@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./reducers/rootReducer";
-import { authMiddleware } from "./authMiddleware";
+import { authMiddleware } from "./middleware/authMiddleware";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { profileMiddleware } from "./profileMiddleware";
+import { profileMiddleware } from "./middleware/profileMiddleware";
 
 const persistConfig = {
   key: "root",

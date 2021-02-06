@@ -10,8 +10,8 @@ import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import InputMask from "react-input-mask";
 import { connect } from "react-redux";
-import { saveCard } from "./actions";
-import { cardInfoSelector } from "./reducers/rootReducer";
+import { saveCard } from "../../actions";
+import { cardInfoSelector } from "../../reducers/rootReducer";
 
 //import Autocomplete from "@material-ui/lab/Autocomplete";
 

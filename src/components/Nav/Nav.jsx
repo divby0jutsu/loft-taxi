@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Tabs, Tab } from "@material-ui/core";
 import { connect } from "react-redux";
-import { logout } from "./actions";
+import { logout } from "../../actions";
 
 const Nav = (props) => {
   return (

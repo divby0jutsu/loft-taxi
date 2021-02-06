@@ -1,38 +1,12 @@
 import React from "react";
-//import { Router } from "react-router-dom";
 import { render, fireEvent } from "@testing-library/react";
-import { createMemoryHistory } from "history";
-import { mount } from "enzyme";
-import { Login } from "./Login";
-//import { Provider } from "react-redux";
 import App from "./App";
-import { TestWrapper } from "./testWrapper";
+import { TestWrapper } from "../../testWrapper";
 
-jest.mock("./Map", () => () => <div>Map content</div>);
-jest.mock("./Account", () => ({ Account: () => <div>Profile content</div> }));
-
-// const AppWrapper = ({ path, loginState = false }) => {
-//   const history = createMemoryHistory();
-//   if (path) {
-//     history.push(path);
-//   }
-
-//   const authState = { auth: { isLoggedIn: loginState } };
-
-//   const mockStore = {
-//     getState: () => authState,
-//     subscribe: () => {},
-//     dispatch: () => {},
-//   };
-
-//   return (
-//     <Provider store={mockStore}>
-//       <Router history={history}>
-//         <App />
-//       </Router>
-//     </Provider>
-//   );
-// };
+jest.mock("../Map/Map", () => () => <div>Map content</div>);
+jest.mock("../Account/Account", () => ({
+  Account: () => <div>Profile content</div>,
+}));
 
 describe("App", () => {
   it("renders correctly", () => {

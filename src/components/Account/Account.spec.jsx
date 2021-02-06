@@ -1,6 +1,6 @@
 import { Account } from "./Account";
 import { render } from "@testing-library/react";
-import { TestWrapper } from "./testWrapper";
+import { TestWrapper } from "../../testWrapper";
 
 describe("Account", () => {
   it("renders correctly", () => {

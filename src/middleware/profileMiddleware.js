@@ -1,5 +1,5 @@
-import { SAVECARD, storeCard } from "./actions";
-import { addBankCard } from "./api";
+import { SAVECARD, storeCard } from "../actions";
+import { addBankCard } from "../api";
 
 export const profileMiddleware = (store) => (next) => async (action) => {
   if (action.type === SAVECARD) {

@@ -2,7 +2,7 @@ import { profileMiddleware } from "./profileMiddleware";
 import { saveCard } from "./actions";
 import { addBankCard } from "./api";
 
-jest.mock("./api", () => ({ addBankCard: jest.fn(() => true) }));
+jest.mock("../api", () => ({ addBankCard: jest.fn(() => true) }));
 
 describe("profileMiddleware", () => {
   afterAll(jest.clearAllMocks);

@@ -1,9 +1,6 @@
 import Welcome from "./Welcome";
-import { Login } from "./Login";
-import { Register } from "./Register";
 import { render } from "@testing-library/react";
-import { MemoryRouter as Router } from "react-router-dom";
-import { TestWrapper } from "./testWrapper";
+import { TestWrapper } from "../../testWrapper";
 
 describe("Welcome page", () => {
   it("renders login page when props.renderPage=login", () => {
