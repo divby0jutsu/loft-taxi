@@ -2,12 +2,18 @@ import React from "react";
 import { Button, Typography, FormLabel, TextField } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { authenticate } from "../../actions";
+import { register } from "../../actions";
 
 const Register = (props) => {
+  const [email, setEmail] = React.useState();
+  const [name, setName] = React.useState();
+  const [surname, setSurname] = React.useState();
+  const [password, setPassword] = React.useState();
+
   const handleSubmit = (e) => {
-    const { email, password } = e.target;
-    props.authenticate(email, password);
+    e.preventDefault();
+    console.log({ email, password, name, surname });
+    props.register({ email, password, name, surname });
   };
 
   return (
@@ -25,13 +31,23 @@ const Register = (props) => {
         name="email"
         id="email"
         placeholder="mail@mail.ru"
+        onChange={(e) => setEmail(e.target.value)}
       />
-      <FormLabel htmlFor="name">Как вас зовут?*</FormLabel>
+      <FormLabel htmlFor="name">Имя*</FormLabel>
       <TextField
         type="text"
         name="name"
         id="name"
-        placeholder="Петр Александрович"
+        placeholder="Петр"
+        onChange={(e) => setName(e.target.value)}
+      />
+      <FormLabel htmlFor="surname">Фамилия*</FormLabel>
+      <TextField
+        type="text"
+        name="surname"
+        id="surname"
+        placeholder="Иванов"
+        onChange={(e) => setSurname(e.target.value)}
       />
       <FormLabel htmlFor="password">Придумайте пароль*</FormLabel>
       <TextField
@@ -39,6 +55,7 @@ const Register = (props) => {
         name="password"
         id="password"
         placeholder="*************"
+        onChange={(e) => setPassword(e.target.value)}
       />
       <Button variant="contained" color="primary" type="submit">
         Зарегистрироваться
@@ -53,4 +70,4 @@ const Register = (props) => {
   );
 };
 
-export default connect(null, { authenticate })(Register);
+export default connect(null, { register })(Register);

@@ -10,7 +10,8 @@ describe("Register", () => {
       </TestWrapper>
     );
     expect(getByLabelText("Email*")).toHaveAttribute("name", "email");
-    expect(getByLabelText("Как вас зовут?*")).toHaveAttribute("name", "name");
+    expect(getByLabelText("Имя*")).toHaveAttribute("name", "name");
+    expect(getByLabelText("Фамилия*")).toHaveAttribute("name", "surname");
     expect(getByLabelText("Придумайте пароль*")).toHaveAttribute(
       "name",
       "password"
