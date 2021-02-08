@@ -2,7 +2,7 @@ import { takeEvery, call, put } from "redux-saga/effects";
 import { GETROUTE, STOREROUTE, storeRoute } from "../actions";
 import { getMapRoute } from "../api";
 
-function* getRouteSaga(action) {
+export function* getRouteSaga(action) {
   console.log(action.payload);
   const { address1, address2 } = action.payload;
   console.log(address1, address2);
