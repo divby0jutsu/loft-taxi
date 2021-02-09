@@ -1,15 +1,16 @@
 import React from "react";
 import { Button, Typography, FormLabel, TextField } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { AuthContext } from "./Authentication";
+import { connect } from "react-redux";
+import { authenticate } from "../../actions";
 
-export const Login = () => {
-  const { login } = React.useContext(AuthContext);
+const Login = (props) => {
   const [email, setEmail] = React.useState();
   const [password, setPassword] = React.useState();
 
   const handleSubmit = (e) => {
-    login(email, password);
+    e.preventDefault();
+    props.authenticate({ email, password });
   };
 
   return (
@@ -38,12 +39,7 @@ export const Login = () => {
         onChange={(e) => setPassword(e.target.value)}
       />
       <p style={{ textAlign: "right" }}>Забыли пароль?</p>
-      <Button
-        variant="contained"
-        color="primary"
-        type="submit"
-        onClick={handleSubmit}
-      >
+      <Button variant="contained" color="primary" type="submit">
         Войти
       </Button>
       <p style={{ textAlign: "center" }}>
@@ -55,3 +51,5 @@ export const Login = () => {
     </form>
   );
 };
+
+export default connect(null, { authenticate })(Login);

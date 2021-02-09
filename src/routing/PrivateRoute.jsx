@@ -1,14 +1,15 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import { AuthContext } from "./Authentication";
+import { connect } from "react-redux";
+import { loginStateSelector } from "../reducers/rootReducer";
 
 const PrivateRoute = ({ children, ...props }) => {
-  const { isLoggedIn } = React.useContext(AuthContext);
-  return isLoggedIn ? (
+  console.log(props);
+  return props.isLoggedIn ? (
     <Route {...props}>{children}</Route>
   ) : (
     <Redirect to="/signin" />
   );
 };
 
-export default PrivateRoute;
+export default connect(loginStateSelector)(PrivateRoute);

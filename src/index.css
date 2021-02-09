@@ -1,26 +1,28 @@
 @font-face {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
-  src: local('Roboto Regular'), url('./fonts/Roboto/Roboto-Regular.woff2') format('woff2');
+  src: local("Roboto Regular"),
+    url("./fonts/Roboto/Roboto-Regular.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
-  src: local('Roboto Bold'), url('./fonts/Roboto/Roboto-Bold.woff2') format('woff2');
+  src: local("Roboto Bold"),
+    url("./fonts/Roboto/Roboto-Bold.woff2") format("woff2");
 }
 
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
