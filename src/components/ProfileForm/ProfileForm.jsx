@@ -38,6 +38,7 @@ const ProfileForm = (props) => {
   return (
     <Grid
       container
+      item
       direction="column"
       alignItems="center"
       justify="center"
@@ -57,7 +58,7 @@ const ProfileForm = (props) => {
       <p style={{ textAlign: "center" }}>Введите платежные данные</p>
 
       <form data-testid="profileForm" onSubmit={handleSubmit}>
-        <Grid container wrap="nowrap" xs={12}>
+        <Grid container item wrap="nowrap" xs={12}>
           <Grid
             item
             container
@@ -79,7 +80,6 @@ const ProfileForm = (props) => {
             <InputMask
               mask="9999 9999 9999 9999"
               name="number"
-              disableUnderline
               onChange={(e) => setNumber(e.target.value)}
               onFocus={(e) => setFocus(e.target.name)}
               value={number}
@@ -97,7 +97,7 @@ const ProfileForm = (props) => {
                 <InputMask
                   mask="99/99"
                   name="number"
-                  maskChar=" "
+                  maskPlaceholder={null}
                   onChange={(e) => setExpiry(e.target.value)}
                   onFocus={(e) => setFocus(e.target.name)}
                   value={expiry}
