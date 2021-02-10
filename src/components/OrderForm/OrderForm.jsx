@@ -34,7 +34,7 @@ const OrderForm = (props) => {
         margin: "20px",
       }}
     >
-      <Grid container wrap="nowrap" xs={12}>
+      <Grid container item wrap="nowrap" xs={12}>
         <Grid item container direction="column" xs={12} s={5}>
           <Autocomplete
             options={props.addresses}

@@ -3,7 +3,6 @@ import { Header } from "../Header/Header";
 import { Account } from "../Account/Account";
 import { Grid } from "@material-ui/core";
 import { PropTypes } from "prop-types";
-import Map from "../Map/Map";
 import OrderTaxiForm from "../OrderForm/OrderTaxiForm";
 
 export const Home = ({ ...props }) => {
@@ -11,7 +10,6 @@ export const Home = ({ ...props }) => {
     return page === "map" ? (
       <React.Fragment>
         <OrderTaxiForm />
-        <Map />
       </React.Fragment>
     ) : (
       <Account />

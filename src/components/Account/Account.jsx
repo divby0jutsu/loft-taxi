@@ -7,12 +7,20 @@ export const Account = () => {
     <Box>
       <Grid
         container
+        item
         xs={12}
         justify="center"
         alignItems="center"
         style={{ minHeight: "100vh" }}
       >
-        <Grid container xs={12} sm={9} justify="center" alignItems="center">
+        <Grid
+          container
+          item
+          xs={12}
+          sm={9}
+          justify="center"
+          alignItems="center"
+        >
           <Paper
             elevation={5}
             style={{

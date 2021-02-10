@@ -5,6 +5,37 @@ import styles from "./Map.module.css";
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZGl2YnkwanV0c3UiLCJhIjoiY2trODFlcWNrMDZ5ZjJ2cjBja2g0cXJ0biJ9.UPbkwkpv_KaJ1yA7TrKUqg";
 
+export const drawRoute = (map, coordinates) => {
+  map.flyTo({
+    center: coordinates[0],
+    zoom: 15,
+  });
+
+  map.addLayer({
+    id: "route",
+    type: "line",
+    source: {
+      type: "geojson",
+      data: {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          type: "LineString",
+          coordinates,
+        },
+      },
+    },
+    layout: {
+      "line-join": "round",
+      "line-cap": "round",
+    },
+    paint: {
+      "line-color": "#ffc617",
+      "line-width": 8,
+    },
+  });
+};
+
 export default class Map extends React.Component {
   constructor(props) {
     super(props);
