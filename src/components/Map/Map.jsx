@@ -1,18 +1,29 @@
 import React from "react";
 import mapboxgl from "mapbox-gl";
 import styles from "./Map.module.css";
+import { connect } from "react-redux";
+import { routeSelector } from "../../reducers/rootReducer";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZGl2YnkwanV0c3UiLCJhIjoiY2trODFlcWNrMDZ5ZjJ2cjBja2g0cXJ0biJ9.UPbkwkpv_KaJ1yA7TrKUqg";
 
-export const drawRoute = (map, coordinates) => {
+const drawRoute = (map, coordinates) => {
   map.flyTo({
     center: coordinates[0],
     zoom: 15,
   });
 
+  let id = "route";
+
+  if (map.getLayer(id)) {
+    map.removeLayer(id);
+  }
+  if (map.getSource(id)) {
+    map.removeSource(id);
+  }
+
   map.addLayer({
-    id: "route",
+    id: id,
     type: "line",
     source: {
       type: "geojson",
@@ -36,7 +47,7 @@ export const drawRoute = (map, coordinates) => {
   });
 };
 
-export default class Map extends React.Component {
+class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,6 +55,7 @@ export default class Map extends React.Component {
       lat: 55.7,
       zoom: 12,
     };
+    this.map = null;
   }
 
   render() {
@@ -63,7 +75,9 @@ export default class Map extends React.Component {
       zoom: this.state.zoom,
     });
 
-    map.on("move", () => {
+    this.map = map;
+
+    this.map.on("move", () => {
       this.setState({
         lng: map.getCenter().lng.toFixed(4),
         lat: map.getCenter().lat.toFixed(4),
@@ -71,4 +85,11 @@ export default class Map extends React.Component {
       });
     });
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.route !== this.props.route) {
+      drawRoute(this.map, this.props.route);
+    }
+  }
 }
+
+export default connect(routeSelector)(Map);

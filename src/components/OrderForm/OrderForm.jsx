@@ -3,7 +3,7 @@ import { TextField, Grid, Button } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { routeSelector } from "../../reducers/rootReducer";
+import { addressSelector } from "../../reducers/rootReducer";
 import { getAddresses } from "../../actions";
 import { getRoute } from "../../actions";
 
@@ -77,4 +77,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ getAddresses, getRoute }, dispatch);
 };
 
-export default connect(routeSelector, mapDispatchToProps)(OrderForm);
+export default connect(addressSelector, mapDispatchToProps)(OrderForm);

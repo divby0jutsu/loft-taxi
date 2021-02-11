@@ -4,12 +4,14 @@ import { Account } from "../Account/Account";
 import { Grid } from "@material-ui/core";
 import { PropTypes } from "prop-types";
 import OrderTaxiForm from "../OrderForm/OrderTaxiForm";
+import Map from "../Map/Map";
 
 export const Home = ({ ...props }) => {
   function switchForm(page) {
     return page === "map" ? (
       <React.Fragment>
         <OrderTaxiForm />
+        <Map />
       </React.Fragment>
     ) : (
       <Account />

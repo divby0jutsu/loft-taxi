@@ -22,13 +22,16 @@ export const cardInfoSelector = (state) => ({
   token: state.auth.authToken,
 });
 
-export const routeSelector = (state) => ({
+export const addressSelector = (state) => ({
   addresses: state.addresses.addresses,
-  route: state.route.route,
 });
 
 export const cardNumberSelector = (state) => ({
   cardNumber: state.profile.cardNumber,
+});
+
+export const routeSelector = (state) => ({
+  route: state.route,
 });
 
 export default rootReducer;
