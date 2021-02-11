@@ -4,7 +4,6 @@ import { GETADDRESSES, storeAddresses } from "../actions";
 
 export function* addressesSaga() {
   const message = yield call(getAddressList);
-  console.log(message);
   if (message.addresses) {
     yield put(storeAddresses(message));
   } else {

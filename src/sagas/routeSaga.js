@@ -6,7 +6,6 @@ export function* getRouteSaga(action) {
   const { address1, address2 } = action.payload;
   const message = yield call(getMapRoute, address1, address2);
   yield put(storeRoute(message));
-  console.log(message);
 }
 
 export function* routeSaga() {
