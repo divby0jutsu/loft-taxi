@@ -1,6 +1,6 @@
 import React from "react";
 import mapboxgl from "mapbox-gl";
-import styles from "./Map.module.css";
+import styles from "./index.module.css";
 import { connect } from "react-redux";
 import { routeSelector } from "../../reducers/rootReducer";
 

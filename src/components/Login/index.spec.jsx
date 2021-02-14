@@ -1,4 +1,4 @@
-import Login from "./Login";
+import Login from ".";
 import { render } from "@testing-library/react";
 import { TestWrapper } from "../../testWrapper";
 

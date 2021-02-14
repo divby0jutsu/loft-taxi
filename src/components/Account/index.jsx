@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileForm from "../ProfileForm/ProfileForm";
+import ProfileForm from "../ProfileForm";
 import { Paper, Box, Grid } from "@material-ui/core";
 
 export const Account = () => {

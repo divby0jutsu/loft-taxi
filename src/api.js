@@ -40,7 +40,9 @@ export const getAddressList = async () => {
 
 export const getMapRoute = async (address1, address2) => {
   return fetch(
-    `https://loft-taxi.glitch.me/route?address1=${address1}&address2=${address2}`,
+    `https://loft-taxi.glitch.me/route?address1=${encodeURIComponent(
+      address1
+    )}&address2=${encodeURIComponent(address2)}`,
     {
       method: "GET",
     }

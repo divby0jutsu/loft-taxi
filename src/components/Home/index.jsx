@@ -1,10 +1,10 @@
 import React from "react";
-import { Header } from "../Header/Header";
-import { Account } from "../Account/Account";
+import { Header } from "../Header";
+import { Account } from "../Account";
 import { Grid } from "@material-ui/core";
 import { PropTypes } from "prop-types";
 import OrderTaxiForm from "../OrderForm/OrderTaxiForm";
-import Map from "../Map/Map";
+import Map from "../Map";
 
 export const Home = ({ ...props }) => {
   function switchForm(page) {

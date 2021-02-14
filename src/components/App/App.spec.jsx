@@ -3,8 +3,8 @@ import { render, fireEvent } from "@testing-library/react";
 import App from "./App";
 import { TestWrapper } from "../../testWrapper";
 
-jest.mock("../Map/Map", () => () => <div>Map content</div>);
-jest.mock("../Account/Account", () => ({
+jest.mock("../Map/index.jsx", () => () => <div>Map content</div>);
+jest.mock("../Account/index.jsx", () => ({
   Account: () => <div>Profile content</div>,
 }));
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import Welcome from "../components/Welcome/Welcome";
-import { Home } from "../components/Home/Home";
+import Welcome from "../components/Welcome";
+import { Home } from "../components/Home";
 import PrivateRoute from "./PrivateRoute";
 
 export const Routes = () => {

@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Paper } from "@material-ui/core";
 import { connect } from "react-redux";
 import { cardNumberSelector } from "../../reducers/rootReducer";
-import OrderForm from "./OrderForm";
+import OrderForm from ".";
 import { GoToProfile } from "./GoToProfile";
 
 const OrderTaxiForm = (props) => {
