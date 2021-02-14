@@ -1,4 +1,4 @@
-import ProfileForm from "./ProfileForm";
+import ProfileForm from ".";
 import { render } from "@testing-library/react";
 import { TestWrapper } from "../../testWrapper";
 

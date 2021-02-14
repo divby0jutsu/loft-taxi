@@ -1,6 +1,6 @@
 import React from "react";
-import Login from "../Login/Login";
-import Register from "../Register/Register";
+import Login from "../Login";
+import Register from "../Register";
 import { ReactComponent as Logo } from "../../img/logo.svg";
 import { Grid } from "@material-ui/core";
 import { PropTypes } from "prop-types";

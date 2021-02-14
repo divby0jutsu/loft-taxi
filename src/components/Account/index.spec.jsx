@@ -1,4 +1,4 @@
-import { Account } from "./Account";
+import { Account } from "./";
 import { render } from "@testing-library/react";
 import { TestWrapper } from "../../testWrapper";
 

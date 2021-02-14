@@ -1,9 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import Welcome from "../components/Welcome/Welcome";
-import { Header } from "../components/Header/Header";
-import Map from "../components/Map/Map";
-import { Account } from "../components/Account/Account";
+import Welcome from "../components/Welcome";
+import { Home } from "../components/Home";
 import PrivateRoute from "./PrivateRoute";
 
 export const Routes = () => {
@@ -17,12 +15,10 @@ export const Routes = () => {
         <Welcome renderPage="register" />
       </Route>
       <PrivateRoute path="/map">
-        <Header />
-        <Map />
+        <Home renderPage="map" />
       </PrivateRoute>
       <PrivateRoute path="/account">
-        <Header />
-        <Account />
+        <Home renderPage="account" />
       </PrivateRoute>
     </Switch>
   );
