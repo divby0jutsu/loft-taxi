@@ -1,4 +1,4 @@
-import Welcome from "./Welcome";
+import Welcome from "./";
 import { render } from "@testing-library/react";
 import { TestWrapper } from "../../testWrapper";
 

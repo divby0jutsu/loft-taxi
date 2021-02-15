@@ -1,6 +1,6 @@
 import { recordSaga } from "./recordSaga";
 import { registrationSaga } from "./registerSaga";
-import { register } from "../actions";
+import { registerUser } from "../actions";
 import { serverRegister } from "../api";
 
 jest.mock("../api", () => ({ serverRegister: jest.fn(() => true) }));
@@ -13,7 +13,7 @@ describe("authSaga", () => {
       });
       const dispatched = await recordSaga(
         registrationSaga,
-        register({
+        registerUser({
           email: "testlogin",
           password: "testpassword",
           name: "testname",
@@ -33,7 +33,7 @@ describe("authSaga", () => {
       });
       const dispatched = await recordSaga(
         registrationSaga,
-        register({
+        registerUser({
           email: "testlogin",
           password: "testpassword",
           name: "testname",

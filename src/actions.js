@@ -28,7 +28,7 @@ export const storeCard = (cardinfo) => ({
   type: STORECARD,
   payload: cardinfo,
 });
-export const register = (credentials) => ({
+export const registerUser = (credentials) => ({
   type: REGISTER,
   payload: credentials,
 });

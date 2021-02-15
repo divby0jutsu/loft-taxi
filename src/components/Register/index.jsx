@@ -1,72 +1,104 @@
 import React from "react";
-import { Button, Typography, FormLabel, TextField } from "@material-ui/core";
+import { Button, Typography, FormLabel } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { register } from "../../actions";
+import { registerUser } from "../../actions";
+import { useForm } from "react-hook-form";
+import { Form } from "../Form";
+import { Input } from "../Input";
+import { PrimaryButton } from "../PrimaryButton";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers";
+
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Введите корректный email")
+    .required("Введите email"),
+  password: yup.string().required("Введите пароль"),
+  name: yup
+    .string()
+    .matches(/^[A-Za-z ]*$/, "Введите корректное имя")
+    .required("Введите имя"),
+  surname: yup
+    .string()
+    .matches(/^[A-Za-z ]*$/, "Введите корректную фамилию")
+    .required("Введите фамилию"),
+});
 
 const Register = (props) => {
-  const [email, setEmail] = React.useState();
-  const [name, setName] = React.useState();
-  const [surname, setSurname] = React.useState();
-  const [password, setPassword] = React.useState();
+  const { register, handleSubmit, errors } = useForm({
+    mode: "onBlur",
+    resolver: yupResolver(schema),
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    props.register({ email, password, name, surname });
+  const onSubmit = (data) => {
+    props.registerUser({
+      email: data.email,
+      password: data.password,
+      name: data.name,
+      surname: data.surname,
+    });
   };
 
   return (
-    <form
+    <Form
       data-testid="registerForm"
       style={{ display: "flex", flexDirection: "column" }}
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <Typography variant="h4" component="h1" style={{ textAlign: "center" }}>
         Регистрация
       </Typography>
       <FormLabel htmlFor="email">Email*</FormLabel>
-      <TextField
+      <Input
         type="email"
         name="email"
         id="email"
         placeholder="mail@mail.ru"
-        onChange={(e) => setEmail(e.target.value)}
+        ref={register}
+        error={!!errors.email}
+        helperText={errors?.email?.message}
       />
       <FormLabel htmlFor="name">Имя*</FormLabel>
-      <TextField
+      <Input
         type="text"
         name="name"
         id="name"
         placeholder="Петр"
-        onChange={(e) => setName(e.target.value)}
+        ref={register}
+        error={!!errors.name}
+        helperText={errors?.name?.message}
       />
       <FormLabel htmlFor="surname">Фамилия*</FormLabel>
-      <TextField
+      <Input
         type="text"
         name="surname"
         id="surname"
         placeholder="Иванов"
-        onChange={(e) => setSurname(e.target.value)}
+        ref={register}
+        error={!!errors.surname}
+        helperText={errors?.surname?.message}
       />
       <FormLabel htmlFor="password">Придумайте пароль*</FormLabel>
-      <TextField
+      <Input
         type="password"
         name="password"
         id="password"
         placeholder="*************"
-        onChange={(e) => setPassword(e.target.value)}
+        ref={register}
+        error={!!errors.password}
+        helperText={errors?.password?.message}
       />
-      <Button variant="contained" color="primary" type="submit">
-        Зарегистрироваться
-      </Button>
+      <PrimaryButton>Зарегистрироваться</PrimaryButton>
       <p style={{ textAlign: "center" }}>
         Уже зарегистрированы?{" "}
         <Button variant="text" color="primary" component={Link} to="/signin">
           Войти
         </Button>
       </p>
-    </form>
+    </Form>
   );
 };
 
-export default connect(null, { register })(Register);
+export default connect(null, { registerUser })(Register);

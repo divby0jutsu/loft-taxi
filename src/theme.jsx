@@ -49,12 +49,12 @@ export const theme = createMuiTheme({
         },
       },
     },
-    MuiFormHelperText: {
-      root: {
-        position: "absolute",
-        bottom: "-1.2em",
-      },
-    },
+    // MuiFormHelperText: {
+    //   root: {
+    //     position: "absolute",
+    //     bottom: "-1.2em",
+    //   },
+    // },
     MuiAppBar: {
       root: {
         paddingTop: 20,

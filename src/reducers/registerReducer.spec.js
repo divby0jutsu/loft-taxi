@@ -1,5 +1,5 @@
 import { registerReducer } from "./registerReducer";
-import { register } from "./../actions";
+import { registerUser } from "./../actions";
 
 describe("profileReducer", () => {
   describe("action = REGISTER", () => {
@@ -10,7 +10,7 @@ describe("profileReducer", () => {
       surname: "test",
     };
     it("returns cardinfo object", () => {
-      expect(registerReducer({}, register(user))).toEqual(user);
+      expect(registerReducer({}, registerUser(user))).toEqual(user);
     });
   });
 });

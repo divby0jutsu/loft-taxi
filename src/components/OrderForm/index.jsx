@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { TextField, Grid, Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { addressSelector } from "../../reducers/rootReducer";
 import { getAddresses } from "../../actions";
 import { getRoute } from "../../actions";
+import { Form } from "../Form";
+import { Input } from "../Input";
+import { PrimaryButton } from "../PrimaryButton";
 
 const OrderForm = (props) => {
   const [address1, setAddress1] = useState("");
@@ -24,7 +27,7 @@ const OrderForm = (props) => {
   };
 
   return (
-    <form
+    <Form
       data-testid="orderForm"
       onSubmit={handleSubmit}
       style={{
@@ -46,7 +49,7 @@ const OrderForm = (props) => {
             }}
             fullWidth={true}
             renderInput={(params) => (
-              <TextField {...params} name="address1" placeholder="Откуда" />
+              <Input {...params} name="address1" placeholder="Откуда" />
             )}
           />
           <Autocomplete
@@ -59,17 +62,15 @@ const OrderForm = (props) => {
             }
             fullWidth={true}
             renderInput={(params) => (
-              <TextField {...params} name="address2" placeholder="Куда" />
+              <Input {...params} name="address2" placeholder="Куда" />
             )}
           />
         </Grid>
       </Grid>
       <Grid item container direction="column" alignItems="stretch">
-        <Button variant="contained" color="primary" type="submit" mx="auto">
-          Заказать
-        </Button>
+        <PrimaryButton>Заказать</PrimaryButton>
       </Grid>
-    </form>
+    </Form>
   );
 };
 
