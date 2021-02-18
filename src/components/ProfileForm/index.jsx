@@ -42,7 +42,8 @@ const ProfileForm = (props) => {
     token: props.token,
   };
 
-  const onSubmit = () => {
+  const onSubmit = (data) => {
+    console.log(data);
     props.saveCard(cardinfo);
   };
 
@@ -118,16 +119,16 @@ const ProfileForm = (props) => {
                 <NumberFormat
                   format="#### #### #### ####"
                   customInput={Input}
+                  onValueChange={(v) => setNumber(v.value)}
+                  ref={register}
+                  onFocus={(e) => setFocus(e.target.name)}
                 />
               }
               control={control}
               type="tel"
               name="number"
               placeholder="**** **** **** ****"
-              onChange={(e) => setNumber(e.target.value)}
-              onFocus={(e) => setFocus(e.target.name)}
-              value={number}
-              ref={register}
+              defaultValue={number}
               error={!!errors.number}
               helperText={errors?.number?.message}
             />
@@ -140,13 +141,20 @@ const ProfileForm = (props) => {
               >
                 <FormLabel htmlFor="expiry">MM/YY</FormLabel>
                 <Controller
-                  as={<NumberFormat format={cardExpiry} customInput={Input} />}
+                  as={
+                    <NumberFormat
+                      format={cardExpiry}
+                      customInput={Input}
+                      onValueChange={(v) => setExpiry(v.value)}
+                      onFocus={(e) => setFocus(e.target.name)}
+                      ref={register}
+                    />
+                  }
                   control={control}
                   type="text"
                   name="expiry"
                   placeholder="MM/YY"
-                  onChange={(e) => setExpiry(e.target.value)}
-                  ref={register}
+                  defaultValue={expiry}
                   error={!!errors.expiry}
                   helperText={errors?.expiry?.message}
                 />
@@ -154,13 +162,21 @@ const ProfileForm = (props) => {
               <Grid container item direction="column">
                 <FormLabel htmlFor="cvc">CVC</FormLabel>
                 <Controller
-                  as={<NumberFormat format="###" customInput={Input} />}
+                  as={
+                    <NumberFormat
+                      format="###"
+                      customInput={Input}
+                      onFocus={(e) => setFocus(e.target.name)}
+                      onValueChange={(v) => setCvc(v.value)}
+                      ref={register}
+                    />
+                  }
                   control={control}
                   type="tel"
                   name="cvc"
                   value={cvc}
                   placeholder="CVC"
-                  ref={register}
+                  defaultValue={cvc}
                   onChange={(e) => setCvc(e.target.value)}
                   onFocus={(e) => setFocus(e.target.name)}
                   error={!!errors.cvc}
