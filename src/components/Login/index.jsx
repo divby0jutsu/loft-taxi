@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Typography, FormLabel } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 import { authenticate } from "../../actions";
 import { useForm } from "react-hook-form";
 import { Form } from "../Form";
@@ -9,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers";
 import { Input } from "../Input";
 import { PrimaryButton } from "../PrimaryButton";
 import * as yup from "yup";
+import { useDispatch } from "react-redux";
 
 const schema = yup.object().shape({
   email: yup
@@ -18,14 +18,15 @@ const schema = yup.object().shape({
   password: yup.string().required("Введите пароль"),
 });
 
-const Login = (props) => {
+const Login = ({ useDispatchHook = useDispatch }) => {
   const { register, handleSubmit, errors } = useForm({
     mode: "onBlur",
     resolver: yupResolver(schema),
   });
+  const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    props.authenticate({ email: data.email, password: data.password });
+    dispatch(authenticate({ email: data.email, password: data.password }));
   };
 
   return (
@@ -69,4 +70,4 @@ const Login = (props) => {
   );
 };
 
-export default connect(null, { authenticate })(Login);
+export default Login;
