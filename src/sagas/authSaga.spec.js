@@ -1,6 +1,6 @@
 import { recordSaga } from "./recordSaga";
 import { authenticateSaga } from "./authSaga";
-import { authenticate } from "../actions";
+import { authenticate, LOGIN_ERROR } from "../actions";
 import { serverLogin } from "../api";
 
 jest.mock("../api", () => ({ serverLogin: jest.fn(() => true) }));
@@ -24,14 +24,14 @@ describe("authSaga", () => {
     });
     it("fails to authenticate through api", async () => {
       serverLogin.mockImplementation(async () => {
-        return { success: false };
+        return { success: false, error: "error" };
       });
       const dispatched = await recordSaga(
         authenticateSaga,
         authenticate({ email: "testlogin", password: "testpassword" })
       );
 
-      expect(dispatched).toEqual([]);
+      expect(dispatched).toEqual([{ type: "LOGIN_ERROR", payload: "error" }]);
     });
   });
 });

@@ -1,4 +1,4 @@
-import { STORECARD } from "../actions";
+import { STORECARD, SAVECARD_ERROR } from "../actions";
 
 const initialState = {
   cardNumber: "",
@@ -6,6 +6,7 @@ const initialState = {
   cardName: "",
   cvc: "",
   token: "AUTH_TOKEN",
+  error: " ",
 };
 
 export const profileReducer = (state = initialState, action) => {
@@ -13,6 +14,10 @@ export const profileReducer = (state = initialState, action) => {
     case STORECARD:
       return {
         ...action.payload,
+      };
+    case SAVECARD_ERROR:
+      return {
+        error: action.payload,
       };
     default:
       return state;

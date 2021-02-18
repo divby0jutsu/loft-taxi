@@ -12,6 +12,7 @@ import { PrimaryButton } from "../PrimaryButton";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers";
 import NumberFormat from "react-number-format";
+import { Error } from "../Error";
 
 const schema = yup.object().shape({
   name: yup
@@ -90,7 +91,7 @@ const ProfileForm = (props) => {
         Профиль
       </Typography>
       <p style={{ textAlign: "center" }}>Введите платежные данные</p>
-
+      <Error>{props.error}</Error>
       <Form data-testid="profileForm" onSubmit={handleSubmit(onSubmit)}>
         <Grid container item wrap="nowrap" xs={12}>
           <Grid

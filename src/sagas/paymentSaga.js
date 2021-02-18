@@ -1,6 +1,6 @@
 import { takeEvery, call, put } from "redux-saga/effects";
 import { addBankCard } from "../api";
-import { SAVECARD, storeCard } from "../actions";
+import { SAVECARD, storeCard, saveCardError } from "../actions";
 
 export function* saveCardSaga(action) {
   const cardinfo = action.payload;
@@ -8,7 +8,7 @@ export function* saveCardSaga(action) {
   if (message.success) {
     yield put(storeCard(cardinfo));
   } else {
-    console.log(message.error);
+    yield put(saveCardError(message.error));
   }
 }
 

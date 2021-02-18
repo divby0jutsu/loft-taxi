@@ -37,7 +37,7 @@ describe("paymentSaga", () => {
     });
     it("fails to save card info on server", async () => {
       addBankCard.mockImplementation(async () => {
-        return { success: false };
+        return { success: false, error: "error" };
       });
       const dispatched = await recordSaga(
         saveCardSaga,
@@ -49,7 +49,9 @@ describe("paymentSaga", () => {
           token: "AUTH_TOKEN",
         })
       );
-      expect(dispatched).toEqual([]);
+      expect(dispatched).toEqual([
+        { type: "SAVECARD_ERROR", payload: "error" },
+      ]);
     });
   });
 });

@@ -29,7 +29,7 @@ describe("authSaga", () => {
     });
     it("fails to authenticate through api", async () => {
       serverRegister.mockImplementation(async () => {
-        return { success: false };
+        return { success: false, error: "error" };
       });
       const dispatched = await recordSaga(
         registrationSaga,
@@ -41,7 +41,7 @@ describe("authSaga", () => {
         })
       );
 
-      expect(dispatched).toEqual([]);
+      expect(dispatched).toEqual([{ type: "LOGIN_ERROR", payload: "error" }]);
     });
   });
 });

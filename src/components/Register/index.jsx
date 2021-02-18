@@ -9,6 +9,8 @@ import { Input } from "../Input";
 import { PrimaryButton } from "../PrimaryButton";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers";
+import { Error } from "../Error";
+import { loginErrorSelector } from "../../reducers/rootReducer";
 
 const schema = yup.object().shape({
   email: yup
@@ -50,6 +52,7 @@ const Register = (props) => {
       <Typography variant="h4" component="h1" style={{ textAlign: "center" }}>
         Регистрация
       </Typography>
+      <Error>{props.error}</Error>
       <FormLabel htmlFor="email">Email*</FormLabel>
       <Input
         type="email"
@@ -101,4 +104,4 @@ const Register = (props) => {
   );
 };
 
-export default connect(null, { registerUser })(Register);
+export default connect(loginErrorSelector, { registerUser })(Register);

@@ -11,6 +11,7 @@ export const GoToProfile = () => {
         flexDirection: "column",
         flexGrow: "1",
         margin: "20px",
+        textAlign: "center",
       }}
     >
       <Typography

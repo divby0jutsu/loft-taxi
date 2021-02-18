@@ -75,6 +75,7 @@ export const theme = createMuiTheme({
     MuiButton: {
       root: {
         textTransform: "none",
+        textAlign: "center",
       },
       containedPrimary: {
         boxShadow: "none",
