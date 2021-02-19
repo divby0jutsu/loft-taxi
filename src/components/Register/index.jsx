@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Typography, FormLabel } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 import { registerUser } from "../../actions";
 import { useForm } from "react-hook-form";
 import { Form } from "../Form";
@@ -11,6 +10,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers";
 import { Error } from "../Error";
 import { loginErrorSelector } from "../../reducers/rootReducer";
+import { useDispatch, useSelector } from "react-redux";
 
 const schema = yup.object().shape({
   email: yup
@@ -28,20 +28,26 @@ const schema = yup.object().shape({
     .required("Введите фамилию"),
 });
 
-const Register = (props) => {
+const Register = ({ useDispatchHook = useDispatch }) => {
   const { register, handleSubmit, errors } = useForm({
     mode: "onBlur",
     resolver: yupResolver(schema),
   });
 
+  const dispatch = useDispatchHook();
+
   const onSubmit = (data) => {
-    props.registerUser({
-      email: data.email,
-      password: data.password,
-      name: data.name,
-      surname: data.surname,
-    });
+    dispatch(
+      registerUser({
+        email: data.email,
+        password: data.password,
+        name: data.name,
+        surname: data.surname,
+      })
+    );
   };
+
+  const { error } = useSelector(loginErrorSelector);
 
   return (
     <Form
@@ -52,7 +58,7 @@ const Register = (props) => {
       <Typography variant="h4" component="h1" style={{ textAlign: "center" }}>
         Регистрация
       </Typography>
-      <Error>{props.error}</Error>
+      <Error>{error}</Error>
       <FormLabel htmlFor="email">Email*</FormLabel>
       <Input
         type="email"
@@ -93,7 +99,9 @@ const Register = (props) => {
         error={!!errors.password}
         helperText={errors?.password?.message}
       />
-      <PrimaryButton>Зарегистрироваться</PrimaryButton>
+      <PrimaryButton data-testid="registerSubmit">
+        Зарегистрироваться
+      </PrimaryButton>
       <p style={{ textAlign: "center" }}>
         Уже зарегистрированы?{" "}
         <Button variant="text" color="primary" component={Link} to="/signin">
@@ -104,4 +112,4 @@ const Register = (props) => {
   );
 };
 
-export default connect(loginErrorSelector, { registerUser })(Register);
+export default Register;

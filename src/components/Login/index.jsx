@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Typography, FormLabel } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 import { loginErrorSelector } from "../../reducers/rootReducer";
 import { authenticate } from "../../actions";
 import { useForm } from "react-hook-form";
@@ -11,7 +10,7 @@ import { yupResolver } from "@hookform/resolvers";
 import { Input } from "../Input";
 import { PrimaryButton } from "../PrimaryButton";
 import * as yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const schema = yup.object().shape({
   email: yup
@@ -21,16 +20,18 @@ const schema = yup.object().shape({
   password: yup.string().required("Введите пароль"),
 });
 
-const Login = (props, { useDispatchHook = useDispatch }) => {
+const Login = ({ useDispatchHook = useDispatch }) => {
   const { register, handleSubmit, errors } = useForm({
     mode: "onBlur",
     resolver: yupResolver(schema),
   });
-  const dispatch = useDispatch();
+  const dispatch = useDispatchHook();
 
   const onSubmit = (data) => {
     dispatch(authenticate({ email: data.email, password: data.password }));
   };
+
+  const { error } = useSelector(loginErrorSelector);
 
   return (
     <Form
@@ -41,7 +42,7 @@ const Login = (props, { useDispatchHook = useDispatch }) => {
       <Typography variant="h4" component="h1" style={{ textAlign: "center" }}>
         Войти
       </Typography>
-      <Error>{props.error}</Error>
+      <Error>{error}</Error>
       <FormLabel htmlFor="email">Email</FormLabel>
       <Input
         type="email"
@@ -74,4 +75,4 @@ const Login = (props, { useDispatchHook = useDispatch }) => {
   );
 };
 
-export default connect(loginErrorSelector)(Login);
+export default Login;

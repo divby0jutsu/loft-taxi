@@ -1,13 +1,14 @@
 import React from "react";
 import { Grid, Paper } from "@material-ui/core";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { cardNumberSelector } from "../../reducers/rootReducer";
 import OrderForm from ".";
 import { GoToProfile } from "./GoToProfile";
 
-const OrderTaxiForm = (props) => {
+const OrderTaxiForm = () => {
+  const { cardNumber } = useSelector(cardNumberSelector);
   const switchForm = () => {
-    return props.cardNumber.length > 0 ? <OrderForm /> : <GoToProfile />;
+    return cardNumber.length > 0 ? <OrderForm /> : <GoToProfile />;
   };
 
   return (
@@ -35,4 +36,4 @@ const OrderTaxiForm = (props) => {
   );
 };
 
-export default connect(cardNumberSelector)(OrderTaxiForm);
+export default OrderTaxiForm;

@@ -1,30 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addressSelector } from "../../reducers/rootReducer";
-import { getAddresses } from "../../actions";
-import { getRoute } from "../../actions";
+import { getAddresses, getRoute } from "../../actions";
 import { Form } from "../Form";
 import { Input } from "../Input";
 import { PrimaryButton } from "../PrimaryButton";
 
-const OrderForm = (props) => {
+const OrderForm = ({ useDispatchHook = useDispatch }) => {
   const [address1, setAddress1] = useState("");
   const [address2, setAddress2] = useState("");
 
+  const dispatch = useDispatchHook();
+
   useEffect(() => {
     async function getAllAddresses() {
-      await props.getAddresses();
+      await dispatch(getAddresses());
     }
     getAllAddresses();
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.getRoute({ address1, address2 });
+    dispatch(getRoute({ address1, address2 }));
   };
+
+  const addresses = useSelector(addressSelector);
 
   return (
     <Form
@@ -40,7 +42,7 @@ const OrderForm = (props) => {
       <Grid container item wrap="nowrap" xs={12}>
         <Grid item container direction="column" xs={12} s={5}>
           <Autocomplete
-            options={props.addresses}
+            options={addresses}
             filterOptions={(addresses) =>
               addresses.filter((el) => el !== address2)
             }
@@ -53,7 +55,7 @@ const OrderForm = (props) => {
             )}
           />
           <Autocomplete
-            options={props.addresses}
+            options={addresses}
             onChange={(e, value) => {
               setAddress2(value);
             }}
@@ -74,8 +76,4 @@ const OrderForm = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getAddresses, getRoute }, dispatch);
-};
-
-export default connect(addressSelector, mapDispatchToProps)(OrderForm);
+export default OrderForm;

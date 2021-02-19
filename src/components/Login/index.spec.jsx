@@ -14,9 +14,6 @@ describe("Login", () => {
   });
 
   it("dispatches authenticate function with email and password", async () => {
-    // const authenticate = jest.fn((email, password) => {
-    //   return Promise.resolve({ email, password });
-    // });
     const mockDispatch = jest.fn();
     const { getByLabelText, getByTestId } = render(
       <TestWrapper loginState={false}>
@@ -31,9 +28,14 @@ describe("Login", () => {
     await act(async () => {
       fireEvent.change(emailInput, { target: { value: "test@test.com" } });
       fireEvent.change(pswInput, { target: { value: "testpassword" } });
-      //fireEvent.click(submitButton);
-      fireEvent.submit(pswInput);
+      fireEvent.click(submitButton);
     });
-    expect(mockDispatch).toHaveBeenCalled();
+    expect(mockDispatch).toBeCalledWith({
+      type: "AUTHENTICATE",
+      payload: {
+        email: "test@test.com",
+        password: "testpassword",
+      },
+    });
   });
 });

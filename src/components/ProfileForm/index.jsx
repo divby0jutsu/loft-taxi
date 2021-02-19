@@ -15,13 +15,13 @@ import NumberFormat from "react-number-format";
 import { Error } from "../Error";
 
 const schema = yup.object().shape({
-  name: yup
-    .string()
-    .matches(/^[A-Za-z ]*$/, "Введите корректное имя")
-    .required("Введите имя на карте"),
-  number: yup.string().required("Введите номер карты"),
-  expiry: yup.string().required("Введите срок действия карты"),
-  cvc: yup.string().required("Введите cvc-код"),
+  // name: yup
+  //   .string()
+  //   .matches(/^[A-Za-z ]*$/, "Введите корректное имя")
+  //   .required("Введите имя на карте"),
+  // number: yup.string().required("Введите номер карты"),
+  // expiry: yup.string().required("Введите срок действия карты"),
+  // cvc: yup.string().required("Введите cvc-код"),
 });
 
 const ProfileForm = (props) => {
@@ -113,6 +113,7 @@ const ProfileForm = (props) => {
               onFocus={(e) => setFocus(e.target.name)}
               error={!!errors.name}
               helperText={errors?.name?.message}
+              inputProps={{ "data-testid": "cardName" }}
             />
             <FormLabel htmlFor="number">Номер карты</FormLabel>
             <Controller
@@ -204,7 +205,7 @@ const ProfileForm = (props) => {
           </Grid>
         </Grid>
         <Grid item container justify="center">
-          <PrimaryButton>Coxранить</PrimaryButton>
+          <PrimaryButton data-testid="profileSubmit">Coxранить</PrimaryButton>
         </Grid>
       </Form>
     </Grid>
