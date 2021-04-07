@@ -1,6 +1,6 @@
 import { recordSaga } from "./recordSaga";
 import { registrationSaga } from "./registerSaga";
-import { register } from "../actions";
+import { registerUser } from "../actions";
 import { serverRegister } from "../api";
 
 jest.mock("../api", () => ({ serverRegister: jest.fn(() => true) }));
@@ -13,7 +13,7 @@ describe("authSaga", () => {
       });
       const dispatched = await recordSaga(
         registrationSaga,
-        register({
+        registerUser({
           email: "testlogin",
           password: "testpassword",
           name: "testname",
@@ -29,11 +29,11 @@ describe("authSaga", () => {
     });
     it("fails to authenticate through api", async () => {
       serverRegister.mockImplementation(async () => {
-        return { success: false };
+        return { success: false, error: "error" };
       });
       const dispatched = await recordSaga(
         registrationSaga,
-        register({
+        registerUser({
           email: "testlogin",
           password: "testpassword",
           name: "testname",
@@ -41,7 +41,7 @@ describe("authSaga", () => {
         })
       );
 
-      expect(dispatched).toEqual([]);
+      expect(dispatched).toEqual([{ type: "LOGIN_ERROR", payload: "error" }]);
     });
   });
 });

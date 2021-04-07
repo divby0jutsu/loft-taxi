@@ -1,6 +1,6 @@
 import { takeEvery, call, put } from "redux-saga/effects";
 import { serverRegister } from "../api";
-import { REGISTER, login } from "../actions";
+import { REGISTER, login, loginError } from "../actions";
 
 export function* registrationSaga(action) {
   const credentials = action.payload;
@@ -8,7 +8,7 @@ export function* registrationSaga(action) {
   if (message.success) {
     yield put(login(message.token));
   } else {
-    console.log(message.error);
+    yield put(loginError(message.error));
   }
 }
 

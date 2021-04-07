@@ -1,6 +1,7 @@
 import React from "react";
-import { Typography, Button } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { PrimaryButton } from "../PrimaryButton";
 
 export const GoToProfile = () => {
   return (
@@ -10,6 +11,7 @@ export const GoToProfile = () => {
         flexDirection: "column",
         flexGrow: "1",
         margin: "20px",
+        textAlign: "center",
       }}
     >
       <Typography
@@ -24,14 +26,9 @@ export const GoToProfile = () => {
         Заполните платежные данные
       </Typography>
       <p>Укажите информацию о банковской карте, чтобы сделать заказ.</p>
-      <Button
-        variant="contained"
-        color="primary"
-        component={Link}
-        to="/account"
-      >
+      <PrimaryButton component={Link} to="/account">
         Перейти в профиль
-      </Button>
+      </PrimaryButton>
     </div>
   );
 };

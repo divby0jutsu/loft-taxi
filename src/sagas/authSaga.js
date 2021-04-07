@@ -1,6 +1,6 @@
 import { takeEvery, call, put } from "redux-saga/effects";
 import { serverLogin } from "../api";
-import { AUTHENTICATE, login } from "../actions";
+import { AUTHENTICATE, login, loginError } from "../actions";
 
 export function* authenticateSaga(action) {
   const credentials = action.payload;
@@ -8,7 +8,7 @@ export function* authenticateSaga(action) {
   if (message.success) {
     yield put(login(message.token));
   } else {
-    console.log(message.error);
+    yield put(loginError(message.error));
   }
 }
 

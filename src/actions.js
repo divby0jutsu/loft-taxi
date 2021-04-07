@@ -8,10 +8,16 @@ export const GETADDRESSES = "GETADDRESSES";
 export const STOREADDRESSES = "STOREADDRESSES";
 export const GETROUTE = "GETROUTE";
 export const STOREROUTE = "STOREROUTE";
+export const LOGIN_ERROR = "LOGIN_ERROR";
+export const SAVECARD_ERROR = "SAVECARD_ERROR";
 
 export const login = (token) => ({
   type: LOGIN,
   payload: token,
+});
+export const loginError = (error) => ({
+  type: LOGIN_ERROR,
+  payload: error,
 });
 export const logout = () => ({
   type: LOGOUT,
@@ -24,11 +30,15 @@ export const saveCard = (cardinfo) => ({
   type: SAVECARD,
   payload: cardinfo,
 });
+export const saveCardError = (error) => ({
+  type: SAVECARD_ERROR,
+  payload: error,
+});
 export const storeCard = (cardinfo) => ({
   type: STORECARD,
   payload: cardinfo,
 });
-export const register = (credentials) => ({
+export const registerUser = (credentials) => ({
   type: REGISTER,
   payload: credentials,
 });

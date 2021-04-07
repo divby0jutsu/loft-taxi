@@ -1,55 +1,78 @@
 import React from "react";
-import { Button, Typography, FormLabel, TextField } from "@material-ui/core";
+import { Button, Typography, FormLabel } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { loginErrorSelector } from "../../reducers/rootReducer";
 import { authenticate } from "../../actions";
+import { useForm } from "react-hook-form";
+import { Form } from "../Form";
+import { Error } from "../Error";
+import { yupResolver } from "@hookform/resolvers";
+import { Input } from "../Input";
+import { PrimaryButton } from "../PrimaryButton";
+import * as yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
 
-const Login = (props) => {
-  const [email, setEmail] = React.useState();
-  const [password, setPassword] = React.useState();
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Введите корректный email")
+    .required("Введите email"),
+  password: yup.string().required("Введите пароль"),
+});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    props.authenticate({ email, password });
+const Login = ({ useDispatchHook = useDispatch }) => {
+  const { register, handleSubmit, errors } = useForm({
+    mode: "onBlur",
+    resolver: yupResolver(schema),
+  });
+  const dispatch = useDispatchHook();
+
+  const onSubmit = (data) => {
+    dispatch(authenticate({ email: data.email, password: data.password }));
   };
 
+  const { error } = useSelector(loginErrorSelector);
+
   return (
-    <form
+    <Form
       data-testid="loginForm"
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       style={{ display: "flex", flexDirection: "column" }}
     >
       <Typography variant="h4" component="h1" style={{ textAlign: "center" }}>
         Войти
       </Typography>
+      <Error>{error}</Error>
       <FormLabel htmlFor="email">Email</FormLabel>
-      <TextField
+      <Input
         type="email"
         name="email"
         id="email"
         placeholder="mail@mail.ru"
-        onChange={(e) => setEmail(e.target.value)}
+        ref={register}
+        error={!!errors.email}
+        helperText={errors?.email?.message}
       />
       <FormLabel htmlFor="password">Пароль</FormLabel>
-      <TextField
+      <Input
         type="password"
         name="password"
         id="password"
         placeholder="*************"
-        onChange={(e) => setPassword(e.target.value)}
+        ref={register}
+        error={!!errors.password}
+        helperText={errors?.password?.message}
       />
       <p style={{ textAlign: "right" }}>Забыли пароль?</p>
-      <Button variant="contained" color="primary" type="submit">
-        Войти
-      </Button>
+      <PrimaryButton data-testid="loginSubmit">Войти</PrimaryButton>
       <p style={{ textAlign: "center" }}>
         Новый пользователь?{" "}
         <Button variant="text" color="primary" component={Link} to="/signup">
           Регистрация
         </Button>
       </p>
-    </form>
+    </Form>
   );
 };
 
-export default connect(null, { authenticate })(Login);
+export default Login;

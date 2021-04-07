@@ -1,21 +1,34 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Typography,
-  FormLabel,
-  TextField,
-  Grid,
-} from "@material-ui/core";
+import { Typography, FormLabel, Grid } from "@material-ui/core";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
-import InputMask from "react-input-mask";
 import { connect } from "react-redux";
 import { saveCard } from "../../actions";
 import { cardInfoSelector } from "../../reducers/rootReducer";
+import { useForm, Controller } from "react-hook-form";
+import { Form } from "../Form";
+import { Input } from "../Input";
+import { PrimaryButton } from "../PrimaryButton";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers";
+import NumberFormat from "react-number-format";
+import { Error } from "../Error";
 
-//import Autocomplete from "@material-ui/lab/Autocomplete";
+const schema = yup.object().shape({
+  // name: yup
+  //   .string()
+  //   .matches(/^[A-Za-z ]*$/, "Введите корректное имя")
+  //   .required("Введите имя на карте"),
+  // number: yup.string().required("Введите номер карты"),
+  // expiry: yup.string().required("Введите срок действия карты"),
+  // cvc: yup.string().required("Введите cvc-код"),
+});
 
 const ProfileForm = (props) => {
+  const { register, handleSubmit, errors, control } = useForm({
+    mode: "onBlur",
+    resolver: yupResolver(schema),
+  });
   const [name, setName] = useState(props.storedCard.cardName);
   const [number, setNumber] = useState(props.storedCard.cardNumber);
   const [expiry, setExpiry] = useState(props.storedCard.expiryDate);
@@ -30,9 +43,31 @@ const ProfileForm = (props) => {
     token: props.token,
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = (data) => {
+    console.log(data);
     props.saveCard(cardinfo);
+  };
+
+  const limit = (val, max) => {
+    if (val.length === 1 && val[0] > max[0]) {
+      val = "0" + val;
+    }
+
+    if (val.length === 2) {
+      if (Number(val) === 0) {
+        val = "01";
+      } else if (val > max) {
+        val = max;
+      }
+    }
+    return val;
+  };
+
+  const cardExpiry = (val) => {
+    let month = limit(val.substring(0, 2), "12");
+    let year = val.substring(2, 4);
+
+    return month + (year.length ? "/" + year : "");
   };
 
   return (
@@ -56,8 +91,8 @@ const ProfileForm = (props) => {
         Профиль
       </Typography>
       <p style={{ textAlign: "center" }}>Введите платежные данные</p>
-
-      <form data-testid="profileForm" onSubmit={handleSubmit}>
+      <Error>{props.error}</Error>
+      <Form data-testid="profileForm" onSubmit={handleSubmit(onSubmit)}>
         <Grid container item wrap="nowrap" xs={12}>
           <Grid
             item
@@ -68,24 +103,37 @@ const ProfileForm = (props) => {
             style={{ marginRight: "2rem" }}
           >
             <FormLabel htmlFor="name">Имя владельца</FormLabel>
-            <TextField
+            <Input
               type="text"
               name="name"
               placeholder="Имя на карте"
               value={name}
+              ref={register}
               onChange={(e) => setName(e.target.value)}
               onFocus={(e) => setFocus(e.target.name)}
+              error={!!errors.name}
+              helperText={errors?.name?.message}
+              inputProps={{ "data-testid": "cardName" }}
             />
             <FormLabel htmlFor="number">Номер карты</FormLabel>
-            <InputMask
-              mask="9999 9999 9999 9999"
+            <Controller
+              as={
+                <NumberFormat
+                  format="#### #### #### ####"
+                  customInput={Input}
+                  onValueChange={(v) => setNumber(v.value)}
+                  ref={register}
+                  onFocus={(e) => setFocus(e.target.name)}
+                />
+              }
+              control={control}
+              type="tel"
               name="number"
-              onChange={(e) => setNumber(e.target.value)}
-              onFocus={(e) => setFocus(e.target.name)}
-              value={number}
-            >
-              <TextField type="tel" placeholder="**** **** **** ****" />
-            </InputMask>
+              placeholder="**** **** **** ****"
+              defaultValue={number}
+              error={!!errors.number}
+              helperText={errors?.number?.message}
+            />
             <Grid container item wrap="nowrap">
               <Grid
                 container
@@ -93,27 +141,48 @@ const ProfileForm = (props) => {
                 direction="column"
                 style={{ marginRight: "2rem" }}
               >
-                <FormLabel htmlFor="cvc">MM/YY</FormLabel>
-                <InputMask
-                  mask="99/99"
-                  name="number"
-                  maskPlaceholder={null}
-                  onChange={(e) => setExpiry(e.target.value)}
-                  onFocus={(e) => setFocus(e.target.name)}
-                  value={expiry}
-                >
-                  <TextField type="text" name="expiry" placeholder="MM/YY" />
-                </InputMask>
+                <FormLabel htmlFor="expiry">MM/YY</FormLabel>
+                <Controller
+                  as={
+                    <NumberFormat
+                      format={cardExpiry}
+                      customInput={Input}
+                      onValueChange={(v) => setExpiry(v.value)}
+                      onFocus={(e) => setFocus(e.target.name)}
+                      ref={register}
+                    />
+                  }
+                  control={control}
+                  type="text"
+                  name="expiry"
+                  placeholder="MM/YY"
+                  defaultValue={expiry}
+                  error={!!errors.expiry}
+                  helperText={errors?.expiry?.message}
+                />
               </Grid>
               <Grid container item direction="column">
                 <FormLabel htmlFor="cvc">CVC</FormLabel>
-                <TextField
+                <Controller
+                  as={
+                    <NumberFormat
+                      format="###"
+                      customInput={Input}
+                      onFocus={(e) => setFocus(e.target.name)}
+                      onValueChange={(v) => setCvc(v.value)}
+                      ref={register}
+                    />
+                  }
+                  control={control}
                   type="tel"
                   name="cvc"
                   value={cvc}
                   placeholder="CVC"
+                  defaultValue={cvc}
                   onChange={(e) => setCvc(e.target.value)}
                   onFocus={(e) => setFocus(e.target.name)}
+                  error={!!errors.cvc}
+                  helperText={errors?.cvc?.message}
                 />
               </Grid>
             </Grid>
@@ -136,11 +205,9 @@ const ProfileForm = (props) => {
           </Grid>
         </Grid>
         <Grid item container justify="center">
-          <Button variant="contained" color="primary" type="submit" mx="auto">
-            Coxранить
-          </Button>
+          <PrimaryButton data-testid="profileSubmit">Coxранить</PrimaryButton>
         </Grid>
-      </form>
+      </Form>
     </Grid>
   );
 };
