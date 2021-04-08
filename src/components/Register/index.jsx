@@ -15,17 +15,17 @@ import { useDispatch, useSelector } from "react-redux";
 const schema = yup.object().shape({
   email: yup
     .string()
-    .email("Введите корректный email")
-    .required("Введите email"),
-  password: yup.string().required("Введите пароль"),
+    .email("Enter valid email address")
+    .required("Enter email address"),
+  password: yup.string().required("Enter password"),
   name: yup
     .string()
-    .matches(/^[A-Za-z ]*$/, "Введите корректное имя")
-    .required("Введите имя"),
+    .matches(/^[A-Za-z ]*$/, "Enter correct first name")
+    .required("Enter your first name"),
   surname: yup
     .string()
-    .matches(/^[A-Za-z ]*$/, "Введите корректную фамилию")
-    .required("Введите фамилию"),
+    .matches(/^[A-Za-z ]*$/, "Enter correct last name")
+    .required("Enter your last name"),
 });
 
 const Register = ({ useDispatchHook = useDispatch }) => {
@@ -56,7 +56,7 @@ const Register = ({ useDispatchHook = useDispatch }) => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <Typography variant="h4" component="h1" style={{ textAlign: "center" }}>
-        Регистрация
+        Sign Up
       </Typography>
       <Error>{error}</Error>
       <FormLabel htmlFor="email">Email*</FormLabel>
@@ -64,32 +64,32 @@ const Register = ({ useDispatchHook = useDispatch }) => {
         type="email"
         name="email"
         id="email"
-        placeholder="mail@mail.ru"
+        placeholder="example@example.com"
         ref={register}
         error={!!errors.email}
         helperText={errors?.email?.message}
       />
-      <FormLabel htmlFor="name">Имя*</FormLabel>
+      <FormLabel htmlFor="name">First name*</FormLabel>
       <Input
         type="text"
         name="name"
         id="name"
-        placeholder="Петр"
+        placeholder="Alison"
         ref={register}
         error={!!errors.name}
         helperText={errors?.name?.message}
       />
-      <FormLabel htmlFor="surname">Фамилия*</FormLabel>
+      <FormLabel htmlFor="surname">Last name*</FormLabel>
       <Input
         type="text"
         name="surname"
         id="surname"
-        placeholder="Иванов"
+        placeholder="Johnson"
         ref={register}
         error={!!errors.surname}
         helperText={errors?.surname?.message}
       />
-      <FormLabel htmlFor="password">Придумайте пароль*</FormLabel>
+      <FormLabel htmlFor="password">Password*</FormLabel>
       <Input
         type="password"
         name="password"
@@ -99,13 +99,11 @@ const Register = ({ useDispatchHook = useDispatch }) => {
         error={!!errors.password}
         helperText={errors?.password?.message}
       />
-      <PrimaryButton data-testid="registerSubmit">
-        Зарегистрироваться
-      </PrimaryButton>
+      <PrimaryButton data-testid="registerSubmit">Sign Up</PrimaryButton>
       <p style={{ textAlign: "center" }}>
-        Уже зарегистрированы?{" "}
+        Already have an account?{" "}
         <Button variant="text" color="primary" component={Link} to="/signin">
-          Войти
+          Log In
         </Button>
       </p>
     </Form>

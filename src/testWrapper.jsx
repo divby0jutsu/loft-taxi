@@ -26,8 +26,6 @@ export const TestWrapper = (props) => {
     dispatch: () => {},
   };
 
-  console.log(props.loginState);
-
   return (
     <Provider store={mockStore}>
       <Router history={history}>{props.children}</Router>

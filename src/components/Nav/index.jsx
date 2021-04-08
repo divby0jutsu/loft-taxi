@@ -9,11 +9,12 @@ const Nav = (props) => {
   const handleChange = (e, newValue) => {
     setValue(newValue);
   };
+
   return (
     <Tabs value={value} onChange={handleChange}>
-      <Tab label="Карта" to="/map" component={Link} />
-      <Tab label="Профиль" to="/account" component={Link} />
-      <Tab onClick={props.logout} label="Выйти" />
+      <Tab label="Map" to="/map" component={Link} />
+      <Tab label="Account" to="/account" component={Link} />
+      <Tab onClick={props.logout} label="Log Out" />
     </Tabs>
   );
 };

@@ -9,8 +9,8 @@ describe("Nav", () => {
         <Nav />
       </Router>
     );
-    expect(getByText("Карта")).toBeTruthy();
-    expect(getByText("Профиль")).toBeTruthy();
-    expect(getByText("Выйти")).toBeTruthy();
+    expect(getByText("Map")).toBeTruthy();
+    expect(getByText("Accout")).toBeTruthy();
+    expect(getByText("Log Out")).toBeTruthy();
   });
 });

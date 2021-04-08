@@ -15,9 +15,9 @@ import { useDispatch, useSelector } from "react-redux";
 const schema = yup.object().shape({
   email: yup
     .string()
-    .email("Введите корректный email")
-    .required("Введите email"),
-  password: yup.string().required("Введите пароль"),
+    .email("Enter valid email address")
+    .required("Enter email address"),
+  password: yup.string().required("Enter password"),
 });
 
 const Login = ({ useDispatchHook = useDispatch }) => {
@@ -40,7 +40,7 @@ const Login = ({ useDispatchHook = useDispatch }) => {
       style={{ display: "flex", flexDirection: "column" }}
     >
       <Typography variant="h4" component="h1" style={{ textAlign: "center" }}>
-        Войти
+        Log In
       </Typography>
       <Error>{error}</Error>
       <FormLabel htmlFor="email">Email</FormLabel>
@@ -53,7 +53,7 @@ const Login = ({ useDispatchHook = useDispatch }) => {
         error={!!errors.email}
         helperText={errors?.email?.message}
       />
-      <FormLabel htmlFor="password">Пароль</FormLabel>
+      <FormLabel htmlFor="password">Password</FormLabel>
       <Input
         type="password"
         name="password"
@@ -63,12 +63,12 @@ const Login = ({ useDispatchHook = useDispatch }) => {
         error={!!errors.password}
         helperText={errors?.password?.message}
       />
-      <p style={{ textAlign: "right" }}>Забыли пароль?</p>
-      <PrimaryButton data-testid="loginSubmit">Войти</PrimaryButton>
+      <p style={{ textAlign: "right" }}>Forgot password?</p>
+      <PrimaryButton data-testid="loginSubmit">Log In</PrimaryButton>
       <p style={{ textAlign: "center" }}>
-        Новый пользователь?{" "}
+        Don't have an account?{" "}
         <Button variant="text" color="primary" component={Link} to="/signup">
-          Регистрация
+          Sign Up
         </Button>
       </p>
     </Form>

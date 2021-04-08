@@ -10,7 +10,7 @@ describe("Login", () => {
       </TestWrapper>
     );
     expect(getByLabelText("Email")).toHaveAttribute("name", "email");
-    expect(getByLabelText("Пароль")).toHaveAttribute("name", "password");
+    expect(getByLabelText("Password")).toHaveAttribute("name", "password");
   });
 
   it("dispatches authenticate function with email and password", async () => {
@@ -22,7 +22,7 @@ describe("Login", () => {
     );
 
     const emailInput = getByLabelText("Email");
-    const pswInput = getByLabelText("Пароль");
+    const pswInput = getByLabelText("Password");
     const submitButton = getByTestId("loginSubmit");
 
     await act(async () => {

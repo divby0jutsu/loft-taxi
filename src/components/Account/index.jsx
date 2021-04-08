@@ -4,15 +4,8 @@ import { Paper, Box, Grid } from "@material-ui/core";
 
 export const Account = () => {
   return (
-    <Box>
-      <Grid
-        container
-        item
-        xs={12}
-        justify="center"
-        alignItems="center"
-        style={{ minHeight: "100vh" }}
-      >
+    <Box style={{ display: "flex", flexGrow: "1" }}>
+      <Grid container item xs={12} justify="center" alignItems="center">
         <Grid
           container
           item
@@ -24,6 +17,7 @@ export const Account = () => {
           <Paper
             elevation={5}
             style={{
+              flexGrow: "1",
               padding: "20px 40px",
               zIndex: "1200",
               borderRadius: "10px",

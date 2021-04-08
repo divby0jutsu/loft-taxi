@@ -13,6 +13,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers";
 import NumberFormat from "react-number-format";
 import { Error } from "../Error";
+import Hidden from "@material-ui/core/Hidden";
 
 const schema = yup.object().shape({
   // name: yup
@@ -44,7 +45,6 @@ const ProfileForm = (props) => {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
     props.saveCard(cardinfo);
   };
 
@@ -88,25 +88,18 @@ const ProfileForm = (props) => {
           textAlign: "center",
         }}
       >
-        Профиль
+        Payment method
       </Typography>
-      <p style={{ textAlign: "center" }}>Введите платежные данные</p>
+      <p style={{ textAlign: "center" }}>Add payment details</p>
       <Error>{props.error}</Error>
       <Form data-testid="profileForm" onSubmit={handleSubmit(onSubmit)}>
         <Grid container item wrap="nowrap" xs={12}>
-          <Grid
-            item
-            container
-            direction="column"
-            xs={12}
-            s={5}
-            style={{ marginRight: "2rem" }}
-          >
-            <FormLabel htmlFor="name">Имя владельца</FormLabel>
+          <Grid item container direction="column" xs={12} s={5}>
+            <FormLabel htmlFor="name">Name</FormLabel>
             <Input
               type="text"
               name="name"
-              placeholder="Имя на карте"
+              placeholder="Name on the card"
               value={name}
               ref={register}
               onChange={(e) => setName(e.target.value)}
@@ -115,7 +108,7 @@ const ProfileForm = (props) => {
               helperText={errors?.name?.message}
               inputProps={{ "data-testid": "cardName" }}
             />
-            <FormLabel htmlFor="number">Номер карты</FormLabel>
+            <FormLabel htmlFor="number">Card number</FormLabel>
             <Controller
               as={
                 <NumberFormat
@@ -135,12 +128,7 @@ const ProfileForm = (props) => {
               helperText={errors?.number?.message}
             />
             <Grid container item wrap="nowrap">
-              <Grid
-                container
-                item
-                direction="column"
-                style={{ marginRight: "2rem" }}
-              >
+              <Grid container item direction="column">
                 <FormLabel htmlFor="expiry">MM/YY</FormLabel>
                 <Controller
                   as={
@@ -187,25 +175,28 @@ const ProfileForm = (props) => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid
-            container
-            item
-            direction="column"
-            xs={12}
-            s={5}
-            justify="center"
-          >
-            <Cards
-              number={number}
-              name={name}
-              expiry={expiry}
-              cvc={cvc}
-              focused={focus}
-            />
-          </Grid>
+          <Hidden smDown>
+            <Grid
+              container
+              item
+              direction="column"
+              xs={12}
+              s={5}
+              justify="center"
+              style={{ paddingLeft: "2rem" }}
+            >
+              <Cards
+                number={number}
+                name={name}
+                expiry={expiry}
+                cvc={cvc}
+                focused={focus}
+              />
+            </Grid>
+          </Hidden>
         </Grid>
         <Grid item container justify="center">
-          <PrimaryButton data-testid="profileSubmit">Coxранить</PrimaryButton>
+          <PrimaryButton data-testid="profileSubmit">Save</PrimaryButton>
         </Grid>
       </Form>
     </Grid>

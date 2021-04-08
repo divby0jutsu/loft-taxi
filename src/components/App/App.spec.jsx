@@ -34,7 +34,7 @@ describe("App", () => {
           <App />
         </TestWrapper>
       );
-      fireEvent.click(getByText("Профиль"));
+      fireEvent.click(getByText("Account"));
       expect(getByText("Profile content")).toBeTruthy();
     });
 
@@ -44,7 +44,7 @@ describe("App", () => {
           <App />
         </TestWrapper>
       );
-      fireEvent.click(getByText("Карта"));
+      fireEvent.click(getByText("Map"));
       expect(getByText("Map content")).toBeTruthy();
     });
   });

@@ -10,12 +10,9 @@ describe("Register", () => {
       </TestWrapper>
     );
     expect(getByLabelText("Email*")).toHaveAttribute("name", "email");
-    expect(getByLabelText("Имя*")).toHaveAttribute("name", "name");
-    expect(getByLabelText("Фамилия*")).toHaveAttribute("name", "surname");
-    expect(getByLabelText("Придумайте пароль*")).toHaveAttribute(
-      "name",
-      "password"
-    );
+    expect(getByLabelText("First name*")).toHaveAttribute("name", "name");
+    expect(getByLabelText("Last name*")).toHaveAttribute("name", "surname");
+    expect(getByLabelText("Password*")).toHaveAttribute("name", "password");
   });
 
   it("dispatches register function with user info", async () => {
@@ -27,9 +24,9 @@ describe("Register", () => {
     );
 
     const emailInput = getByLabelText("Email*");
-    const nameInput = getByLabelText("Имя*");
-    const lastNameInput = getByLabelText("Фамилия*");
-    const pswInput = getByLabelText("Придумайте пароль*");
+    const nameInput = getByLabelText("First name*");
+    const lastNameInput = getByLabelText("Last name*");
+    const pswInput = getByLabelText("Password*");
     const submitButton = getByTestId("registerSubmit");
 
     await act(async () => {

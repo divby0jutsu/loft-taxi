@@ -6,7 +6,6 @@ const initialState = {
 
 export const addressListReducer = (state = initialState, action) => {
   if (action.type === STOREADDRESSES) {
-    console.log(action.payload);
     return { ...action.payload };
   }
 

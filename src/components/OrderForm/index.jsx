@@ -26,7 +26,7 @@ const OrderForm = ({ useDispatchHook = useDispatch }) => {
     dispatch(getRoute({ address1, address2 }));
   };
 
-  const addresses = useSelector(addressSelector);
+  let { addresses } = useSelector(addressSelector);
 
   return (
     <Form
@@ -51,7 +51,7 @@ const OrderForm = ({ useDispatchHook = useDispatch }) => {
             }}
             fullWidth={true}
             renderInput={(params) => (
-              <Input {...params} name="address1" placeholder="Откуда" />
+              <Input {...params} name="address1" placeholder="From" />
             )}
           />
           <Autocomplete
@@ -64,13 +64,13 @@ const OrderForm = ({ useDispatchHook = useDispatch }) => {
             }
             fullWidth={true}
             renderInput={(params) => (
-              <Input {...params} name="address2" placeholder="Куда" />
+              <Input {...params} name="address2" placeholder="To" />
             )}
           />
         </Grid>
       </Grid>
       <Grid item container direction="column" alignItems="stretch">
-        <PrimaryButton>Заказать</PrimaryButton>
+        <PrimaryButton>Place order</PrimaryButton>
       </Grid>
     </Form>
   );

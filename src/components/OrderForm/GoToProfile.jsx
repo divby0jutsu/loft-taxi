@@ -23,11 +23,11 @@ export const GoToProfile = () => {
           textAlign: "center",
         }}
       >
-        Заполните платежные данные
+        Add payment method
       </Typography>
-      <p>Укажите информацию о банковской карте, чтобы сделать заказ.</p>
+      <p>Add yout credit or debit card to proceed with order</p>
       <PrimaryButton component={Link} to="/account">
-        Перейти в профиль
+        Go to Account
       </PrimaryButton>
     </div>
   );

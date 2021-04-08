@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { loginStateSelector } from "../reducers/rootReducer";
 
 const PrivateRoute = ({ children, ...props }) => {
-  console.log(props);
   return props.isLoggedIn ? (
     <Route {...props}>{children}</Route>
   ) : (

@@ -67,11 +67,7 @@ export const theme = createMuiTheme({
         cursor: "pointer",
       },
     },
-    MuiTab: {
-      wrapper: {
-        padding: 16,
-      },
-    },
+    MuiTab: {},
     MuiButton: {
       root: {
         textTransform: "none",
