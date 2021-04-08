@@ -11,6 +11,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
+    "gh-pages": "^3.1.0",
     "loft-taxi-mui-theme": "^1.2.0",
     "mapbox-gl": "^2.0.1",
     "prop-types": "^15.7.2",
@@ -35,7 +36,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "commit": "cz"
+    "commit": "cz",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +47,7 @@
       "plugin:react-hooks/recommended"
     ]
   },
+  "homepage": "https://divby0jutsu.github.io/loft-taxi/",
   "browserslist": {
     "production": [
       ">0.2%",
