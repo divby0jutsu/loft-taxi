@@ -9,3 +9,6 @@ log in and log out
 save credit card information
 choose location and destination
 order a taxi
+
+<img width="915" alt="Screen Shot 2021-04-08 at 2 23 28 AM" src="https://user-images.githubusercontent.com/44043623/114002402-b0064900-9811-11eb-8fe6-0c8fb8b77ad3.png">
+
