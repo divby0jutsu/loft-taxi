@@ -76,9 +76,9 @@ export const Header = ({ useDispatchHook = useDispatch }, props) => {
       <List>
         {[
           { text: "Map", url: "/map", icon: <MapIcon /> },
-          { text: "Account", url: "./account", icon: <PaymentIcon /> },
+          { text: "Account", url: "/account", icon: <PaymentIcon /> },
         ].map((item, index) => (
-          <Link key={item.text} href={item.url}>
+          <Link key={item.text} href={"/loft-taxi" + item.url}>
             <ListItem button key={item.text}>
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
