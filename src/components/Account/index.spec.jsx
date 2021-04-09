@@ -9,6 +9,6 @@ describe("Account", () => {
         <Account />
       </TestWrapper>
     );
-    expect(container.innerHTML).toMatch("Профиль");
+    expect(container.innerHTML).toMatch("Account");
   });
 });

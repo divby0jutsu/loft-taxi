@@ -10,6 +10,7 @@ export const GETROUTE = "GETROUTE";
 export const STOREROUTE = "STOREROUTE";
 export const LOGIN_ERROR = "LOGIN_ERROR";
 export const SAVECARD_ERROR = "SAVECARD_ERROR";
+export const SAVECARD_REQUESTING = "SAVECARD_REQUESTING";
 
 export const login = (token) => ({
   type: LOGIN,
@@ -29,6 +30,9 @@ export const authenticate = (credentials) => ({
 export const saveCard = (cardinfo) => ({
   type: SAVECARD,
   payload: cardinfo,
+});
+export const saveCardRequesting = () => ({
+  type: SAVECARD_REQUESTING,
 });
 export const saveCardError = (error) => ({
   type: SAVECARD_ERROR,

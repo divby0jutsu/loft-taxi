@@ -13,7 +13,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers";
 import NumberFormat from "react-number-format";
 import { Error } from "../Error";
+import { Notification } from "../Notification";
 import Hidden from "@material-ui/core/Hidden";
+import { useSelector } from "react-redux";
 
 const schema = yup.object().shape({
   // name: yup
@@ -63,6 +65,8 @@ const ProfileForm = (props) => {
     return val;
   };
 
+  const message = useSelector(cardInfoSelector);
+
   const cardExpiry = (val) => {
     let month = limit(val.substring(0, 2), "12");
     let year = val.substring(2, 4);
@@ -91,7 +95,13 @@ const ProfileForm = (props) => {
         Payment method
       </Typography>
       <p style={{ textAlign: "center" }}>Add payment details</p>
-      <Error>{props.error}</Error>
+      <Notification>
+        {message.success === "saving"
+          ? "Saving information..."
+          : message.success
+          ? "Your payment information have been saved"
+          : "Something went wrong"}
+      </Notification>
       <Form data-testid="profileForm" onSubmit={handleSubmit(onSubmit)}>
         <Grid container item wrap="nowrap" xs={12}>
           <Grid item container direction="column" xs={12} s={5}>

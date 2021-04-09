@@ -42,7 +42,11 @@ const Login = ({ useDispatchHook = useDispatch }) => {
       <Typography variant="h4" component="h1" style={{ textAlign: "center" }}>
         Log In
       </Typography>
-      <Error>{error}</Error>
+      <Error>
+        {error === "Ошибка авторизации"
+          ? "We couldn't find this username or password"
+          : ""}
+      </Error>
       <FormLabel htmlFor="email">Email</FormLabel>
       <Input
         type="email"

@@ -39,6 +39,7 @@ export const cardInfoSelector = (state) => ({
   storedCard: state.profile,
   token: state.auth.authToken,
   error: state.profile.error,
+  success: state.profile.success,
 });
 
 export const addressSelector = (state) => ({

@@ -31,6 +31,7 @@ describe("paymentSaga", () => {
             cardName: "TEST",
             cvc: "910",
             token: "AUTH_TOKEN",
+            success: true,
           },
         },
       ]);
@@ -47,6 +48,7 @@ describe("paymentSaga", () => {
           cardName: "TEST",
           cvc: "910",
           token: "AUTH_TOKEN",
+          success: true,
         })
       );
       expect(dispatched).toEqual([
